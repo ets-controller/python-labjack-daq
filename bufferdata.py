@@ -1,7 +1,14 @@
-
-from collections import deque
+import os
 import time
 import csv
+import numpy as np
+
+# Delete the buffer file if it exists
+if os.path.exists('DATA/LJbuffer.csv'):
+    os.remove('DATA/LJbuffer.csv')
+
+# Read the header names from LJdata.csv
+header = np.genfromtxt('DATA/LJdata.csv', delimiter=';', names=True).dtype.names
 
 # Initialize circular buffer with a fixed size of 1800
 circular_buffer = deque(maxlen=1800)
@@ -15,6 +22,11 @@ with open('DATA/LJdata.csv', 'r') as f:
 sum_data = [0] * len(data)
 num_data = 0
 start_time = time.time()
+
+# Write header names to buffer csv
+with open('DATA/LJbuffer.csv', mode='w') as file:
+    writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    writer.writerow(header)
 
 while True:
     # Append the array to the circular buffer
