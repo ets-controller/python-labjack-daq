@@ -54,9 +54,8 @@ while True:
                     f.close()   
     # If there are more than 30 minutes worth of data points in the buffer, delete the oldest data point
     buffer = np.genfromtxt('DATA/LJbuffer.csv', delimiter=';', names=True)
-    if len(buffer):
-        if len(buffer) > bufferSize/avgTime:
-            buffer = np.delete(buffer,0)       
+    if buffer.size > bufferSize/avgTime:
+        buffer = np.delete(buffer,0)       
 
     # Get the time since the loop started
     ts = time.time()-ts
