@@ -7,17 +7,17 @@ Created on Wed May  6 12:31:43 2020
 ###############################################################################
 # The number of sensors
 numFRG = 1
-numVFRG = 1
+#numVFRG = 1
 # Returns the sensor names
 def names():
-    names = ['FRG','Voltage_FRG']
+    names = ['FRG']#,'Voltage_FRG']
     return names
 # Returns the number of sensors
 def number(item):
     if item == 'FRG':
         return numFRG
-    if item == 'Voltage_FRG':
-        return numVFRG
+    #if item == 'Voltage_FRG':
+    #    return numVFRG
 
 ###############################################################################  
 # Assigns sensors to AIN through channels and registries, does extended features math
@@ -28,9 +28,9 @@ def main(handle):
     aValues = {}
     # Setup and call eReadAddresses to read values from the LabJack.
     aAddresses['FRG'] = []  # [Pheifer Full Range Gauge]
-    aAddresses['Voltage_FRG'] = [] # [FRG voltage]
+    #aAddresses['Voltage_FRG'] = [] # [FRG voltage]
     aDataTypes['FRG'] = [] # [Data types for pressure and voltage measurements]
-    aDataTypes['Voltage_FRG'] = [] # [Data types for pressure and voltage measurements]
+    #aDataTypes['Voltage_FRG'] = [] # [Data types for pressure and voltage measurements]
     ###########################################################################
     # AIN for FRG
     AINp = 8
@@ -60,9 +60,9 @@ def main(handle):
     ljm.eWriteAddresses(handle, len(['AIN#_NEGATIVE_CH']), aAddresses['AIN#_NEGATIVE_CH'], aDataTypes['AIN#_NEGATIVE_CH'], aValues['AIN#_NEGATIVE_CH'])
     # Write address for EF value
     aAddresses['FRG'].append(7000+2*AINp)
-    aAddresses['Voltage_FRG'].append(7300+2*AINp)
+    #aAddresses['Voltage_FRG'].append(7300+2*AINp)
     aDataTypes['FRG'].append(ljm.constants.FLOAT32)
-    aDataTypes['Voltage_FRG'].append(ljm.constants.FLOAT32)
+    #aDataTypes['Voltage_FRG'].append(ljm.constants.FLOAT32)
     return aAddresses, aDataTypes, aValues
     ###########################################################################
 
