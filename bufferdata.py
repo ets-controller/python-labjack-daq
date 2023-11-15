@@ -5,7 +5,7 @@ import numpy as np
 from readLJ import buffer_output
 
 # Define scanRate and avgTime
-scanRate, avgTime, bufferSize = buffer_output()[2], 10, 30 # Seconds
+scanRate, avgTime, bufferSize = buffer_output()[2], 30, 30*60 # Seconds
 
 # Delete the buffer file if it exists
 if os.path.exists('DATA/LJbuffer.csv'):
