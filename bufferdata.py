@@ -36,7 +36,7 @@ while True:
     for name in header:
         avgArray[name] = np.append(avgArray[name],data[name])
         # If there are more than avgTime worth of data points, average the data and append to the buffer file
-        if len(avgArray[name]) > avgTime:
+        if len(avgArray[name]) >= int(avgTime):
             # Average the data and store it as a key-item pair in a dictionary which is associated with the header
             avgVal[name] = np.mean(avgArray[name])
             # Clear the temporary array
@@ -53,10 +53,30 @@ while True:
                     f.write('%.5f;'%avgVal[name])
                     f.close()   
     # If there are more than 30 minutes worth of data points in the buffer, delete the oldest data point
-    buffer = np.genfromtxt('DATA/LJbuffer.csv', delimiter=';', names=True)
-    print(buffer.size,bufferSize/avgTime)
-    if buffer.size > bufferSize/avgTime:
-        buffer = np.delete(buffer,0)       
+    # Check how many rows are in the buffer file, excluding the header
+    with open('DATA/LJbuffer.csv','r') as g:
+        reader = csv.reader(g, delimiter=';')
+        row_count = sum(1 for row in reader)-1
+        g.close()
+    # Open the buffer file and write the data
+    with open('DATA/LJbuffer.csv','r') as g:
+        reader = csv.reader(g, delimiter=';')
+        # If there are more than 30 minutes worth of data points, delete the oldest data point
+        if row_count >= int(bufferSize/avgTime):
+            # Skip the header
+            next(reader)
+            # Skip the first row
+            next(reader)
+            # Open the buffer file and write the data
+            with open('DATA/LJbuffer.csv','w') as f:
+                writer = csv.writer(f, delimiter=';')
+                # Write the header
+                writer.writerow(header)
+                # Write the data
+                for row in reader:
+                    writer.writerow(row)
+                f.close()
+        g.close()
 
     # Get the time since the loop started
     ts = time.time()-ts
