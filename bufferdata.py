@@ -4,6 +4,9 @@ import csv
 import numpy as np
 from readLJ import buffer_output
 
+# Define scanRate and avgTime
+scanRate, avgTime, bufferSize = buffer_output()[2], 30, 30*60 # Seconds
+
 # Delete the buffer file if it exists
 if os.path.exists('DATA/LJbuffer.csv'):
     os.remove('DATA/LJbuffer.csv')
@@ -18,8 +21,6 @@ with open('DATA/LJbuffer.csv','w') as f:
     writer.writerow(header)
 f.close()
 
-# Define scanRate and avgTime
-scanRate, avgTime, bufferSize = buffer_output()[2], 10, 30 # Seconds
 # Define a temporary array for each name in the header
 avgArray = {};avgVal = {}
 for name in header:
@@ -58,25 +59,45 @@ while True:
         reader = csv.reader(g, delimiter=';')
         row_count = sum(1 for row in reader)-1
         g.close()
-    # Open the buffer file and write the data
-    with open('DATA/LJbuffer.csv','r') as g:
-        reader = csv.reader(g, delimiter=';')
-        # If there are more than 30 minutes worth of data points, delete the oldest data point
-        if row_count >= int(bufferSize/avgTime):
-            # Skip the header
-            next(reader)
-            # Skip the first row
-            next(reader)
-            # Open the buffer file and write the data
-            with open('DATA/LJbuffer.csv','w') as f:
-                writer = csv.writer(f, delimiter=';')
-                # Write the header
-                writer.writerow(header)
-                # Write the data
-                for row in reader:
-                    writer.writerow(row)
-                f.close()
-        g.close()
+    # Check if the buffer is full
+    if row_count >= int(bufferSize/avgTime):
+        # Open the buffer file and delete the first row
+        with open('DATA/LJbuffer.csv','r') as g:
+            reader = csv.reader(g, delimiter=';')
+            # If there are more than 30 minutes worth of data points, delete the oldest data point
+            if row_count >= int(bufferSize/avgTime):
+                # Skip the header
+                next(reader)
+                # Skip the first row
+                next(reader)
+                # Open the buffer file and write the data
+                with open('DATA/LJbuffer.csv','w') as f:
+                    writer = csv.writer(f, delimiter=';')
+                    # Write the header
+                    writer.writerow(header)
+                    # Write the data
+                    for row in reader:
+                        writer.writerow(row)
+                    f.close()
+            g.close()
+        # Calculate the derivative of RES1 through RES7 as a function of time (timestamp)
+        # Open the buffer file and grab the data
+        data = np.genfromtxt('DATA/LJbuffer.csv', delimiter=';', names=True)
+        # Which sensor names are we taking the derivative of
+        sensorNames = ['RES1','RES2','RES3','RES4','RES5','RES6','RES7']
+        # Calculate the derivative of each sensor
+        for name in sensorNames:
+            # Calculate the derivative
+            data['d%s'%name] = np.gradient(data[name],data['timestamp'])
+        # Open the buffer file and write the data
+        with open('DATA/LJbuffer.csv','w') as f:
+            writer = csv.writer(f, delimiter=';')
+            # Write the header
+            writer.writerow(data.dtype.names)
+            # Write the data
+            for row in data:
+                writer.writerow(row)
+            f.close()
 
     # Get the time since the loop started
     ts = time.time()-ts
