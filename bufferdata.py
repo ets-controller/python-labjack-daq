@@ -82,22 +82,39 @@ while True:
             g.close()
         # Calculate the derivative of RES1 through RES7 as a function of time (timestamp)
         # Open the buffer file and grab the data
-        data = np.genfromtxt('DATA/LJbuffer.csv', delimiter=';', names=True)
+        buffer = np.genfromtxt('DATA/LJbuffer.csv', delimiter=';', names=True)
+        # Create a dictionary to store the derivative of each sensor
+        sigproc = {}
+        # Copy the data from the buffer file to the sigproc dictionary
+        for name in header:
+            sigproc[name] = buffer[name]
         # Which sensor names are we taking the derivative of
-        sensorNames = ['RES1','RES2','RES3','RES4','RES5','RES6','RES7']
+        sensorNames = ['dRES1','dRES2','dRES3','dRES4','dRES5','dRES6','dRES7']
         # Calculate the derivative of each sensor
         for name in sensorNames:
             # Calculate the derivative
-            data['d%s'%name] = []
-            data['d%s'%name] = np.gradient(data[name],data['timestamp'])
+            sigproc[name] = np.gradient(buffer[name[1:]],buffer['timestamp'])
+        # Create a new list of sensor names by combining the old names with the new names
+        newNames = []
+        for name in header:
+            newNames.append(name)
+        for name in sensorNames:
+            newNames.append(name)
         # Open the buffer file and write the data
         with open('DATA/LJbuffer.csv','w') as f:
-            writer = csv.writer(f, delimiter=';')
             # Write the header
-            writer.writerow(data.dtype.names)
+            for name in newNames:
+                if name == newNames[-1]:
+                    f.write('%s\n'%name)
+                else:
+                    f.write('%s;'%name)
             # Write the data
-            for row in data:
-                writer.writerow(row)
+            for i in range(len(sigproc['timestamp'])):
+                for name in newNames:
+                    if name == newNames[-1]:
+                        f.write('%.5f\n'%sigproc[name][i])
+                    else:
+                        f.write('%.5f;'%sigproc[name][i])
             f.close()
 
     # Get the time since the loop started
