@@ -88,6 +88,7 @@ while True:
         # Calculate the derivative of each sensor
         for name in sensorNames:
             # Calculate the derivative
+            data['d%s'%name] = []
             data['d%s'%name] = np.gradient(data[name],data['timestamp'])
         # Open the buffer file and write the data
         with open('DATA/LJbuffer.csv','w') as f:
