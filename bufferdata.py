@@ -19,7 +19,7 @@ with open('DATA/LJbuffer.csv','w') as f:
 f.close()
 
 # Define scanRate and avgTime
-scanRate, avgTime, bufferSize = buffer_output()[2], 30, 1800 # Seconds
+scanRate, avgTime, bufferSize = buffer_output()[2], 10, 30 # Seconds
 # Define a temporary array for each name in the header
 avgArray = {};avgVal = {}
 for name in header:
@@ -54,7 +54,7 @@ while True:
                     f.close()   
     # If there are more than 30 minutes worth of data points in the buffer, delete the oldest data point
     buffer = np.genfromtxt('DATA/LJbuffer.csv', delimiter=';', names=True)
-    if len(buffer) > bufferSize/avgTime:
+    if len(buffer[header[0]]) > bufferSize/avgTime:
         buffer = np.delete(buffer,0)       
 
     # Get the time since the loop started
