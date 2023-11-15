@@ -101,7 +101,7 @@ while True:
         for name in sensorNames:
             newNames.append(name)
         # Open the buffer file and write the data
-        with open('DATA/LJbuffer.csv','w') as f:
+        with open('DATA/LJanalysis.csv','w') as f:
             # Write the header
             for name in newNames:
                 if name == newNames[-1]:
