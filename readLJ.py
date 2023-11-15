@@ -68,9 +68,9 @@ for name in frg.names():
 
 # Pass values to buffer
 def buffer_output():
-    return DATA, LOG, fstr, scanRate, chunkTime, tstr, sensor['ident']
+    return DATA, fstr, scanRate, tstr, sensor['ident']
 def cache_output():
-    return DATA, CRASH
+    return DATA
 
 ##############################################################################
 # COMPACT THIS SECTION #######################################################       
