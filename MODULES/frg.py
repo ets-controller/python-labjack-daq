@@ -7,14 +7,17 @@ Created on Wed May  6 12:31:43 2020
 ###############################################################################
 # The number of sensors
 numFRG = 1
+numVFRG = 1
 # Returns the sensor names
 def names():
-    names = ['FRG']
+    names = ['FRG','Voltage_FRG']
     return names
 # Returns the number of sensors
 def number(item):
     if item == 'FRG':
         return numFRG
+    if item == 'Voltage_FRG':
+        return numVFRG
 
 ###############################################################################  
 # Assigns sensors to AIN through channels and registries, does extended features math
@@ -27,6 +30,7 @@ def main(handle):
     aAddresses['FRG'] = []  # [Pheifer Full Range Gauge]
     aAddresses['Voltage_FRG'] = [] # [FRG voltage]
     aDataTypes['FRG'] = [] # [Data types for pressure and voltage measurements]
+    aDataTypes['Voltage_FRG'] = [] # [Data types for pressure and voltage measurements]
     ###########################################################################
     # AIN for FRG
     AINp = 8
@@ -49,15 +53,16 @@ def main(handle):
         aAddresses['AIN#_EF_INDEX'].append(REG[i]+2*AINp)
         aDataTypes['AIN#_EF_INDEX'].append(TYPE[i])
         aValues['AIN#_EF_INDEX'].append(VAL[i])
-    aAddresses['AIN#_NEGATIVE_CH'].append(41000+i+AINp)
+    aAddresses['AIN#_NEGATIVE_CH'].append(41000+AINp)
     aDataTypes['AIN#_NEGATIVE_CH'].append(ljm.constants.UINT16)
-    aValues['AIN#_NEGATIVE_CH'].append(i+AINn)
+    aValues['AIN#_NEGATIVE_CH'].append(AINn)
     ljm.eWriteAddresses(handle, len(aAddresses['AIN#_EF_INDEX']), aAddresses['AIN#_EF_INDEX'], aDataTypes['AIN#_EF_INDEX'], aValues['AIN#_EF_INDEX'])
     ljm.eWriteAddresses(handle, len(['AIN#_NEGATIVE_CH']), aAddresses['AIN#_NEGATIVE_CH'], aDataTypes['AIN#_NEGATIVE_CH'], aValues['AIN#_NEGATIVE_CH'])
     # Write address for EF value
     aAddresses['FRG'].append(7000+2*AINp)
     aAddresses['Voltage_FRG'].append(7300+2*AINp)
     aDataTypes['FRG'].append(ljm.constants.FLOAT32)
+    aDataTypes['Voltage_FRG'].append(ljm.constants.FLOAT32)
     return aAddresses, aDataTypes, aValues
     ###########################################################################
 
