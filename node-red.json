@@ -1,0 +1,2788 @@
+[
+    {
+        "id": "4901a0f32eb7f3bc",
+        "type": "tab",
+        "label": "Database",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "622b7c2ad32f0fe6",
+        "type": "tab",
+        "label": "Relays",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f694214ce746579e",
+        "type": "tab",
+        "label": "Read Remote",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9165fb27074a613c",
+        "type": "tab",
+        "label": "LabJack",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d99d97e004fee415",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4216e9a52258f8cb",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "c4dfa7d8da268665",
+        "type": "serial-port",
+        "serialport": "/dev/ttyUSB0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "0648485c18acfe33",
+        "type": "ui_tab",
+        "name": "Tab 2",
+        "icon": "dashboard",
+        "order": 2
+    },
+    {
+        "id": "a03eb4f3d26c477a",
+        "type": "ui_group",
+        "name": "Pressure ",
+        "tab": "d99d97e004fee415",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a343bc75c06cd2ed",
+        "type": "ui_group",
+        "name": "Liquid Nitrogen",
+        "tab": "d99d97e004fee415",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b2d40cfa2a020055",
+        "type": "ui_group",
+        "name": "Dark Box In",
+        "tab": "d99d97e004fee415",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "59951fd76c680eae",
+        "type": "mongodb",
+        "hostname": "172.16.0.205",
+        "topology": "direct",
+        "connectOptions": "",
+        "port": "27017",
+        "db": "ETS",
+        "name": "Test"
+    },
+    {
+        "id": "7dade2a005c73d13",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "Influx Lab",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://172.16.0.216:8086",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "57094b63e06db9a5",
+        "type": "ui_group",
+        "name": "Sensor DAQ",
+        "tab": "d99d97e004fee415",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "405117961ba87182",
+        "type": "ui_group",
+        "name": "Dark Box Out",
+        "tab": "d99d97e004fee415",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "676648969881c30a",
+        "type": "ui_group",
+        "name": "Data Buffer",
+        "tab": "d99d97e004fee415",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8229bff6fca7cff0",
+        "type": "ui_group",
+        "name": "Motor",
+        "tab": "d99d97e004fee415",
+        "order": 7,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ab3c663ba053a7f7",
+        "type": "ui_group",
+        "name": "Autofill",
+        "tab": "d99d97e004fee415",
+        "order": 8,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "03608d69fd05a669",
+        "type": "inject",
+        "z": "4901a0f32eb7f3bc",
+        "name": "Poll Sensors",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "3aa41ea9d9aea29c"
+            ]
+        ]
+    },
+    {
+        "id": "3aa41ea9d9aea29c",
+        "type": "link out",
+        "z": "4901a0f32eb7f3bc",
+        "name": "Timestamp (Out)",
+        "mode": "link",
+        "links": [
+            "132079cdc6e501cd",
+            "373e3993eddf87a0",
+            "1c1ba824327aad3a"
+        ],
+        "x": 355,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "36c71314ea0b6b1f",
+        "type": "influxdb out",
+        "z": "4901a0f32eb7f3bc",
+        "influxdb": "7dade2a005c73d13",
+        "name": "Upload Relay State",
+        "measurement": "relay_state",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "ets",
+        "bucket": "sensor_suite",
+        "x": 390,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "752a4f2935891d48",
+        "type": "link in",
+        "z": "4901a0f32eb7f3bc",
+        "name": "Relay State (In)",
+        "links": [
+            "de1fb10928b52cfb"
+        ],
+        "x": 245,
+        "y": 320,
+        "wires": [
+            [
+                "36c71314ea0b6b1f"
+            ]
+        ]
+    },
+    {
+        "id": "b0e979535784725f",
+        "type": "comment",
+        "z": "4901a0f32eb7f3bc",
+        "name": "Write Relay State to Database",
+        "info": "",
+        "x": 240,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "a75ba2d24e70bcaf",
+        "type": "comment",
+        "z": "4901a0f32eb7f3bc",
+        "name": "Get Sensor Values",
+        "info": "",
+        "x": 210,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "347a31098b867e46",
+        "type": "link in",
+        "z": "4901a0f32eb7f3bc",
+        "name": "Serial COM (In)",
+        "links": [
+            "808feeed75f23639"
+        ],
+        "x": 245,
+        "y": 440,
+        "wires": [
+            [
+                "daef84175913555e"
+            ]
+        ]
+    },
+    {
+        "id": "daef84175913555e",
+        "type": "influxdb out",
+        "z": "4901a0f32eb7f3bc",
+        "influxdb": "7dade2a005c73d13",
+        "name": "Upload Dark Box Sensors",
+        "measurement": "dark_box",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "ets",
+        "bucket": "sensor_suite",
+        "x": 410,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "8214e2398b5734d9",
+        "type": "comment",
+        "z": "4901a0f32eb7f3bc",
+        "name": "Write Dark Box Sensors to Database",
+        "info": "",
+        "x": 260,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e6e49aff946c8ddd",
+        "type": "link in",
+        "z": "4901a0f32eb7f3bc",
+        "name": "Labjack (In)",
+        "links": [
+            "4373265ca9675269"
+        ],
+        "x": 245,
+        "y": 560,
+        "wires": [
+            [
+                "5406581248affc1e"
+            ]
+        ]
+    },
+    {
+        "id": "5406581248affc1e",
+        "type": "influxdb out",
+        "z": "4901a0f32eb7f3bc",
+        "influxdb": "7dade2a005c73d13",
+        "name": "Upload LabJack Sensors",
+        "measurement": "ets_cryostat",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "ets",
+        "bucket": "sensor_suite",
+        "x": 410,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "12733cb28a2559c6",
+        "type": "comment",
+        "z": "4901a0f32eb7f3bc",
+        "name": "Write Labjack Sensors to Database",
+        "info": "",
+        "x": 260,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "b7318db0ca218e23",
+        "type": "rpi-gpio out",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Pressure Gauge",
+        "pin": "26",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 620,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "8c09e51e91d32426",
+        "type": "rpi-gpio out",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Liquid Nitrogen",
+        "pin": "19",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 660,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "66ee4fadd1c2d786",
+        "type": "rpi-gpio out",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Dry Nitrogen (Bottle)",
+        "pin": "20",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 680,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "0aa0d20eb277d3db",
+        "type": "rpi-gpio out",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Dry Nitrogen (Dewar)",
+        "pin": "5",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 700,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "642f4b61ccaa28e4",
+        "type": "ui_button",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Pressure relay open",
+        "group": "a03eb4f3d26c477a",
+        "order": 4,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "Deactivate",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "green",
+        "className": "",
+        "icon": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "PGR",
+        "topicType": "msg",
+        "x": 340,
+        "y": 620,
+        "wires": [
+            [
+                "b7318db0ca218e23",
+                "451ba14a39b61ac1"
+            ]
+        ]
+    },
+    {
+        "id": "1239d488549b50c9",
+        "type": "ui_button",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Pressure relay closed",
+        "group": "a03eb4f3d26c477a",
+        "order": 5,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "Activate",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "PGR",
+        "topicType": "msg",
+        "x": 340,
+        "y": 580,
+        "wires": [
+            [
+                "b7318db0ca218e23",
+                "451ba14a39b61ac1"
+            ]
+        ]
+    },
+    {
+        "id": "5aa547436835f96c",
+        "type": "ui_button",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Close Liquid Nitrogen Valve",
+        "group": "a343bc75c06cd2ed",
+        "order": 4,
+        "width": "3",
+        "height": "2",
+        "passthru": true,
+        "label": "Deactivate",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "green",
+        "className": "",
+        "icon": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "LNV",
+        "topicType": "msg",
+        "x": 360,
+        "y": 420,
+        "wires": [
+            [
+                "8c09e51e91d32426",
+                "702dff2e8c43a3d0"
+            ]
+        ]
+    },
+    {
+        "id": "746daebd871c31f3",
+        "type": "ui_button",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Open Liquid Nitrogen Valve",
+        "group": "a343bc75c06cd2ed",
+        "order": 5,
+        "width": "3",
+        "height": "2",
+        "passthru": true,
+        "label": "Activate",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "LNV",
+        "topicType": "msg",
+        "x": 360,
+        "y": 380,
+        "wires": [
+            [
+                "8c09e51e91d32426",
+                "702dff2e8c43a3d0"
+            ]
+        ]
+    },
+    {
+        "id": "5571a66e9e174e3a",
+        "type": "ui_button",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Dry nitrogen (Bottle) open",
+        "group": "405117961ba87182",
+        "order": 1,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "Deactivate",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "green",
+        "className": "",
+        "icon": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "DNB",
+        "topicType": "msg",
+        "x": 360,
+        "y": 1000,
+        "wires": [
+            [
+                "66ee4fadd1c2d786",
+                "307fca30ed35c29f"
+            ]
+        ]
+    },
+    {
+        "id": "5cd6df8873243e2f",
+        "type": "ui_button",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Dry nitrogen (Bottle) closed",
+        "group": "405117961ba87182",
+        "order": 2,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "Activate",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "DNB",
+        "topicType": "msg",
+        "x": 360,
+        "y": 960,
+        "wires": [
+            [
+                "66ee4fadd1c2d786",
+                "307fca30ed35c29f"
+            ]
+        ]
+    },
+    {
+        "id": "040899dbfc2c5940",
+        "type": "ui_button",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Dry nitrogen (Dewar) open",
+        "group": "b2d40cfa2a020055",
+        "order": 4,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "Deactivate",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "green",
+        "className": "",
+        "icon": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "DND",
+        "topicType": "msg",
+        "x": 360,
+        "y": 800,
+        "wires": [
+            [
+                "0aa0d20eb277d3db",
+                "5cc7428f81ae302b"
+            ]
+        ]
+    },
+    {
+        "id": "87798ecbf358bc7c",
+        "type": "ui_button",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Dry nitrogen (Dewar) closed",
+        "group": "b2d40cfa2a020055",
+        "order": 5,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "Activate",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "DND",
+        "topicType": "msg",
+        "x": 360,
+        "y": 760,
+        "wires": [
+            [
+                "0aa0d20eb277d3db",
+                "5cc7428f81ae302b"
+            ]
+        ]
+    },
+    {
+        "id": "5cc7428f81ae302b",
+        "type": "function",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Read Dry Nitrogen Valve (Dewar)",
+        "func": "// Retrieve the variable from the global context\nvar dnv = context.global.dnv;\n\n// Function to handle incoming messages\nfunction processMessage(msg){\n\n    if (typeof msg.payload === 'number' && Number.isInteger(msg.payload)) {\n        // Check if the message payload is a timestamp (assumed to be an integer)\n        // If it is a timestamp, output the current value of x\n        msg.payload = dnv;\n        return msg;\n    }\n\n    // Check if the message payload is a boolean\n    else if (typeof msg.payload === 'boolean') {\n        // Convert boolean to number\n        context.global.dnv = +msg.payload;\n        return null;\n    }\n\n    // If the message is not a boolean message or timestamp, do nothing\n    return null;\n}\n\n// Process incoming messages\nmsg = processMessage(msg);\n\n// Return the modified message or null if no modification is needed\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\n// Store the variable in the global context for reuse\ncontext.global.dnv = 0;",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "307fca30ed35c29f",
+        "type": "function",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Read Dry Nitrogen Valve (Bottle)",
+        "func": "// Retrieve the variable from the global context\nvar dnvB = context.global.dnvB;\n\n// Function to handle incoming messages\nfunction processMessage(msg){\n\n    if (typeof msg.payload === 'number' && Number.isInteger(msg.payload)) {\n        // Check if the message payload is a timestamp (assumed to be an integer)\n        // If it is a timestamp, output the current value of x\n        msg.payload = dnvB;\n        return msg;\n    }\n\n    // Check if the message payload is a boolean\n    else if (typeof msg.payload === 'boolean') {\n        // Convert boolean to number\n        context.global.dnvB = +msg.payload;\n        return null;\n    }\n\n    // If the message is not a boolean message or timestamp, do nothing\n    return null;\n}\n\n// Process incoming messages\nmsg = processMessage(msg);\n\n// Return the modified message or null if no modification is needed\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\n// Store the variable in the global context for reuse\ncontext.global.dnvB = 0;",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "702dff2e8c43a3d0",
+        "type": "function",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Read Liquid Nitrogen Valve",
+        "func": "// Retrieve the variable from the global context\nvar lnv = context.global.lnv;\n\n// Function to handle incoming messages\nfunction processMessage(msg){\n\n    if (typeof msg.payload === 'number' && Number.isInteger(msg.payload)) {\n        // Check if the message payload is a timestamp (assumed to be an integer)\n        // If it is a timestamp, output the current value of x\n        msg.payload = lnv;\n        return msg;\n    }\n\n    // Check if the message payload is a boolean\n    else if (typeof msg.payload === 'boolean') {\n        // Convert boolean to number\n        context.global.lnv = +msg.payload;\n        return null;\n    }\n\n    // If the message is not a boolean message or timestamp, do nothing\n    return null;\n}\n\n// Process incoming messages\nmsg = processMessage(msg);\n\n// Return the modified message or null if no modification is needed\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\n// Store the variable in the global context for reuse\ncontext.global.lnv = 0;",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "451ba14a39b61ac1",
+        "type": "function",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Read Pressure Gauge Status",
+        "func": "// Retrieve the variable from the global context\nvar pgr = context.global.pgr;\n\n// Function to handle incoming messages\nfunction processMessage(msg){\n\n    if (typeof msg.payload === 'number' && Number.isInteger(msg.payload)) {\n        // Check if the message payload is a timestamp (assumed to be an integer)\n        // If it is a timestamp, output the current value of x\n        msg.payload = pgr;\n        return msg;\n    }\n\n    // Check if the message payload is a boolean\n    else if (typeof msg.payload === 'boolean') {\n        // Convert boolean to number\n        context.global.pgr = +msg.payload;\n        return null;\n    }\n\n    // If the message is not a boolean message or timestamp, do nothing\n    return null;\n}\n\n// Process incoming messages\nmsg = processMessage(msg);\n\n// Return the modified message or null if no modification is needed\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\n// Store the variable in the global context for reuse\ncontext.global.pgr = 0;",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "132079cdc6e501cd",
+        "type": "link in",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Timestamp (In)",
+        "links": [
+            "3aa41ea9d9aea29c"
+        ],
+        "x": 245,
+        "y": 120,
+        "wires": [
+            [
+                "15f1b082197001dc"
+            ]
+        ]
+    },
+    {
+        "id": "30059a2215439a52",
+        "type": "comment",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Pressure Gauge Power Relay",
+        "info": "",
+        "x": 360,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "76f7479c89e6a20a",
+        "type": "comment",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Liquid Nitrogen Solenoid Valve",
+        "info": "",
+        "x": 360,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "29892b9eb242b422",
+        "type": "comment",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Dry Nitrogen Solenoid Valve (Bottle)",
+        "info": "",
+        "x": 380,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "a20d08208df7c8c7",
+        "type": "comment",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Dry Nitrogen Solenoid Valve (Dewar)",
+        "info": "",
+        "x": 380,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "15f1b082197001dc",
+        "type": "function",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Send Relay State",
+        "func": "var pgr = context.global.pgr;\nvar lnv = context.global.lnv;\nvar dnvB = context.global.dnvB;\nvar dnv = context.global.dnv;\nvar time = msg.payload;\nmsg.payload= {\n    \"timestamp\": time,\n    \"pressure_gauge\": pgr,\n    \"LN2_valve\": lnv,\n    \"dry_nitrogen_bottle\":dnvB,\n    \"dry_nitrogen\":dnv\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 120,
+        "wires": [
+            [
+                "de1fb10928b52cfb"
+            ]
+        ]
+    },
+    {
+        "id": "f9f49a9064f18a4a",
+        "type": "comment",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Write to DB",
+        "info": "",
+        "x": 310,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "de1fb10928b52cfb",
+        "type": "link out",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Relay State (Out)",
+        "mode": "link",
+        "links": [
+            "752a4f2935891d48"
+        ],
+        "x": 535,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c78e55c86e55e5b5",
+        "type": "link in",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Autoclose (In)",
+        "links": [
+            "ac41a1e0cb3958c6"
+        ],
+        "x": 185,
+        "y": 420,
+        "wires": [
+            [
+                "5aa547436835f96c"
+            ]
+        ]
+    },
+    {
+        "id": "02e5cf0e5d504f88",
+        "type": "link out",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Autoclose (Out)",
+        "mode": "link",
+        "links": [
+            "58d869ed67de6b51",
+            "4fa52675725d76d1"
+        ],
+        "x": 885,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "55b1f5bb292419e1",
+        "type": "status",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Valve status",
+        "scope": [
+            "8c09e51e91d32426"
+        ],
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "0fb17c895329b3dc"
+            ]
+        ]
+    },
+    {
+        "id": "de8c04b98c244b79",
+        "type": "tobool",
+        "z": "622b7c2ad32f0fe6",
+        "name": "",
+        "property": "payload",
+        "showState": true,
+        "filter": false,
+        "x": 630,
+        "y": 300,
+        "wires": [
+            [
+                "cca3e9738ba4cde2"
+            ]
+        ]
+    },
+    {
+        "id": "0fb17c895329b3dc",
+        "type": "function",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Read state",
+        "func": "// Read the status of the GPIO state\nmsg.payload = msg.status.text || '';\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "de8c04b98c244b79"
+            ]
+        ]
+    },
+    {
+        "id": "044f64978443c20b",
+        "type": "link in",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Autovalve",
+        "links": [
+            "3f9d98dde8797238"
+        ],
+        "x": 185,
+        "y": 380,
+        "wires": [
+            [
+                "746daebd871c31f3"
+            ]
+        ]
+    },
+    {
+        "id": "cca3e9738ba4cde2",
+        "type": "change",
+        "z": "622b7c2ad32f0fe6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "LIN",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 300,
+        "wires": [
+            [
+                "02e5cf0e5d504f88"
+            ]
+        ]
+    },
+    {
+        "id": "2660387908d5c503",
+        "type": "inject",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Startup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 460,
+        "wires": [
+            [
+                "5aa547436835f96c"
+            ]
+        ]
+    },
+    {
+        "id": "3f84523399efe808",
+        "type": "serial in",
+        "z": "f694214ce746579e",
+        "name": "DHT22",
+        "serial": "c4dfa7d8da268665",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "6278e76b82c20b67"
+            ]
+        ]
+    },
+    {
+        "id": "6278e76b82c20b67",
+        "type": "csv",
+        "z": "f694214ce746579e",
+        "name": "Parse Serial Output",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "Humidity 1, Temperature 1, Humidity 2, Temperature 2",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 350,
+        "y": 140,
+        "wires": [
+            [
+                "808feeed75f23639"
+            ]
+        ]
+    },
+    {
+        "id": "808feeed75f23639",
+        "type": "link out",
+        "z": "f694214ce746579e",
+        "name": "Serial COM (Out)",
+        "mode": "link",
+        "links": [
+            "347a31098b867e46"
+        ],
+        "x": 515,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "48c63a7e827d4f90",
+        "type": "comment",
+        "z": "f694214ce746579e",
+        "name": "Connect to Arduino",
+        "info": "",
+        "x": 190,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "21356d58c9141f01",
+        "type": "comment",
+        "z": "f694214ce746579e",
+        "name": "Read Labjack Data",
+        "info": "",
+        "x": 190,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4a14da769fbee218",
+        "type": "file in",
+        "z": "f694214ce746579e",
+        "name": "LJ Stream",
+        "filename": "/home/pi/python-labjack-daq/DATA/LJdata.csv",
+        "filenameType": "str",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "4c75fb6f6aaa33e1"
+            ]
+        ]
+    },
+    {
+        "id": "4c75fb6f6aaa33e1",
+        "type": "csv",
+        "z": "f694214ce746579e",
+        "name": "Parse Labjack Data",
+        "sep": ";",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 570,
+        "y": 260,
+        "wires": [
+            [
+                "b5ad21e164cf938e",
+                "b4bfa975d8c91afc",
+                "dc0b370529a63d8f",
+                "f6a0959ec7d97749",
+                "5a2761e738de8d22",
+                "c7b9796f9858be18",
+                "2a366eca7591a8e8",
+                "cfd08b58d9cc9b2e"
+            ]
+        ]
+    },
+    {
+        "id": "373e3993eddf87a0",
+        "type": "link in",
+        "z": "f694214ce746579e",
+        "name": "Timestamp (In)",
+        "links": [
+            "3aa41ea9d9aea29c"
+        ],
+        "x": 225,
+        "y": 260,
+        "wires": [
+            [
+                "4a14da769fbee218"
+            ]
+        ]
+    },
+    {
+        "id": "4373265ca9675269",
+        "type": "link out",
+        "z": "f694214ce746579e",
+        "name": "Labjack (Out)",
+        "mode": "link",
+        "links": [
+            "e6e49aff946c8ddd"
+        ],
+        "x": 1195,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "b5ad21e164cf938e",
+        "type": "function",
+        "z": "f694214ce746579e",
+        "name": "Exponentiate Pressure Value",
+        "func": "msg.payload.FRG1 = 10**(msg.payload.FRG1)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 140,
+        "wires": [
+            [
+                "4373265ca9675269"
+            ]
+        ]
+    },
+    {
+        "id": "cfd08b58d9cc9b2e",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "Overfill",
+        "property": "payload.RES7",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "9.5",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 880,
+        "y": 260,
+        "wires": [
+            [
+                "9d56b34fcb6880b4"
+            ]
+        ]
+    },
+    {
+        "id": "b4bfa975d8c91afc",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "6/6",
+        "property": "payload.RES1",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "9.4",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 870,
+        "y": 300,
+        "wires": [
+            [
+                "4d11429e12a86166"
+            ]
+        ]
+    },
+    {
+        "id": "dc0b370529a63d8f",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "5/6",
+        "property": "payload.RES2",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "9.2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 870,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2a366eca7591a8e8",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "4/6",
+        "property": "payload.RES3",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "9.2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 870,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6a0959ec7d97749",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "3/6",
+        "property": "payload.RES4",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "9.3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 870,
+        "y": 420,
+        "wires": [
+            [
+                "a55633a382947bd7"
+            ]
+        ]
+    },
+    {
+        "id": "5a2761e738de8d22",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "2/6",
+        "property": "payload.RES5",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "9.4",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 870,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c7b9796f9858be18",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "1/6",
+        "property": "payload.RES6",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "9",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 870,
+        "y": 500,
+        "wires": [
+            [
+                "4c2b7b725c0f115e"
+            ]
+        ]
+    },
+    {
+        "id": "2b6dfc3386a51193",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "Close Valve",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1050,
+        "y": 780,
+        "wires": [
+            [
+                "ac41a1e0cb3958c6"
+            ]
+        ]
+    },
+    {
+        "id": "ac41a1e0cb3958c6",
+        "type": "link out",
+        "z": "f694214ce746579e",
+        "name": "Close Valve",
+        "mode": "link",
+        "links": [
+            "c78e55c86e55e5b5"
+        ],
+        "x": 1165,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "58d869ed67de6b51",
+        "type": "link in",
+        "z": "f694214ce746579e",
+        "name": "Autoclose (In)",
+        "links": [
+            "02e5cf0e5d504f88"
+        ],
+        "x": 215,
+        "y": 780,
+        "wires": [
+            [
+                "95e4f11124723425",
+                "04c586c9eb936c64",
+                "d2d1e31a23170deb"
+            ]
+        ]
+    },
+    {
+        "id": "bcd85ad8ed8ac8d8",
+        "type": "delay",
+        "z": "f694214ce746579e",
+        "name": "Autoclose After 5 Minutes",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 780,
+        "wires": [
+            [
+                "2b6dfc3386a51193"
+            ]
+        ]
+    },
+    {
+        "id": "9d56b34fcb6880b4",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "Overfill",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "overfill",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 260,
+        "wires": [
+            [
+                "5eedcb278b79055d"
+            ]
+        ]
+    },
+    {
+        "id": "4d11429e12a86166",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "High-power full",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "high-power-full",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 300,
+        "wires": [
+            [
+                "bc80df56c0ef0ada"
+            ]
+        ]
+    },
+    {
+        "id": "a55633a382947bd7",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "Low-power full",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c2b7b725c0f115e",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "Low-power empty",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1090,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5eedcb278b79055d",
+        "type": "link out",
+        "z": "f694214ce746579e",
+        "name": "Overfill",
+        "mode": "link",
+        "links": [
+            "70ce6925fe54fbda"
+        ],
+        "x": 1245,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "70ce6925fe54fbda",
+        "type": "link in",
+        "z": "f694214ce746579e",
+        "name": "Overfill",
+        "links": [
+            "5eedcb278b79055d"
+        ],
+        "x": 215,
+        "y": 700,
+        "wires": [
+            [
+                "04c586c9eb936c64"
+            ]
+        ]
+    },
+    {
+        "id": "04c586c9eb936c64",
+        "type": "and",
+        "z": "f694214ce746579e",
+        "name": "Overfill",
+        "topic": "",
+        "property": "payload",
+        "minData": "2",
+        "filter": false,
+        "x": 400,
+        "y": 700,
+        "wires": [
+            [
+                "7100de04532a30ef"
+            ]
+        ]
+    },
+    {
+        "id": "95e4f11124723425",
+        "type": "and",
+        "z": "f694214ce746579e",
+        "name": "Autoclose",
+        "topic": "",
+        "property": "payload",
+        "minData": "1",
+        "filter": false,
+        "x": 400,
+        "y": 780,
+        "wires": [
+            [
+                "df6463b1e2665233"
+            ]
+        ]
+    },
+    {
+        "id": "bc80df56c0ef0ada",
+        "type": "link out",
+        "z": "f694214ce746579e",
+        "name": "High-power full",
+        "mode": "link",
+        "links": [
+            "da1f7018478d13c5"
+        ],
+        "x": 1245,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "da1f7018478d13c5",
+        "type": "link in",
+        "z": "f694214ce746579e",
+        "name": "High-power full",
+        "links": [
+            "bc80df56c0ef0ada"
+        ],
+        "x": 215,
+        "y": 860,
+        "wires": [
+            [
+                "d2d1e31a23170deb"
+            ]
+        ]
+    },
+    {
+        "id": "d2d1e31a23170deb",
+        "type": "and",
+        "z": "f694214ce746579e",
+        "name": "High-power full",
+        "topic": "",
+        "property": "payload",
+        "minData": "2",
+        "filter": false,
+        "x": 420,
+        "y": 860,
+        "wires": [
+            [
+                "90bc7bc34e63d56c"
+            ]
+        ]
+    },
+    {
+        "id": "df6463b1e2665233",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 780,
+        "wires": [
+            [
+                "bcd85ad8ed8ac8d8"
+            ]
+        ]
+    },
+    {
+        "id": "7100de04532a30ef",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 700,
+        "wires": [
+            [
+                "2b6dfc3386a51193"
+            ]
+        ]
+    },
+    {
+        "id": "90bc7bc34e63d56c",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 860,
+        "wires": [
+            [
+                "2b6dfc3386a51193"
+            ]
+        ]
+    },
+    {
+        "id": "1e0969457bdf632a",
+        "type": "comment",
+        "z": "f694214ce746579e",
+        "name": "Automatically Close the LN2 Valve",
+        "info": "",
+        "x": 240,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "9d94bf4e118b39ae",
+        "type": "comment",
+        "z": "f694214ce746579e",
+        "name": "Automatically Open the LN2 Valve",
+        "info": "",
+        "x": 240,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "eefe6103d9c17bc7",
+        "type": "file in",
+        "z": "f694214ce746579e",
+        "name": "LJ Buffer",
+        "filename": "/home/pi/python-labjack-daq/DATA/LJanalysis.csv",
+        "filenameType": "str",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 360,
+        "y": 1040,
+        "wires": [
+            [
+                "5d8ea36837bfe132"
+            ]
+        ]
+    },
+    {
+        "id": "5d8ea36837bfe132",
+        "type": "csv",
+        "z": "f694214ce746579e",
+        "name": "Parse Labjack Data",
+        "sep": ";",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 550,
+        "y": 1040,
+        "wires": [
+            [
+                "4886303171d0548a",
+                "c5e7a8b84efe639d",
+                "7a0066da2ced760b"
+            ]
+        ]
+    },
+    {
+        "id": "1c1ba824327aad3a",
+        "type": "link in",
+        "z": "f694214ce746579e",
+        "name": "Timestamp (In)",
+        "links": [
+            "3aa41ea9d9aea29c"
+        ],
+        "x": 225,
+        "y": 1040,
+        "wires": [
+            [
+                "eefe6103d9c17bc7"
+            ]
+        ]
+    },
+    {
+        "id": "7a0066da2ced760b",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "",
+        "property": "payload.dRES1",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "-0.01",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 770,
+        "y": 1040,
+        "wires": [
+            [
+                "b01777e991767e54"
+            ]
+        ]
+    },
+    {
+        "id": "c5e7a8b84efe639d",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "",
+        "property": "payload.dRES2",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "-0.01",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 770,
+        "y": 1080,
+        "wires": [
+            [
+                "eb58cbb2213b1f09"
+            ]
+        ]
+    },
+    {
+        "id": "4886303171d0548a",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "",
+        "property": "payload.dRES3",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "-0.01",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 770,
+        "y": 1120,
+        "wires": [
+            [
+                "662c29be5f4f6cb6"
+            ]
+        ]
+    },
+    {
+        "id": "b01777e991767e54",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "transition1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 1040,
+        "wires": [
+            [
+                "40d6e324e766206d"
+            ]
+        ]
+    },
+    {
+        "id": "eb58cbb2213b1f09",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "transition2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 1080,
+        "wires": [
+            [
+                "40d6e324e766206d"
+            ]
+        ]
+    },
+    {
+        "id": "662c29be5f4f6cb6",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "transition3",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 1120,
+        "wires": [
+            [
+                "40d6e324e766206d"
+            ]
+        ]
+    },
+    {
+        "id": "40d6e324e766206d",
+        "type": "and",
+        "z": "f694214ce746579e",
+        "name": "Autofill",
+        "topic": "",
+        "property": "payload",
+        "minData": "5",
+        "filter": false,
+        "x": 1150,
+        "y": 1040,
+        "wires": [
+            [
+                "08d5ac282a153cbe"
+            ]
+        ]
+    },
+    {
+        "id": "3f9d98dde8797238",
+        "type": "link out",
+        "z": "f694214ce746579e",
+        "name": "Autovalve (Out)",
+        "mode": "link",
+        "links": [
+            "044f64978443c20b"
+        ],
+        "x": 1375,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "08d5ac282a153cbe",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1290,
+        "y": 1040,
+        "wires": [
+            [
+                "3f9d98dde8797238"
+            ]
+        ]
+    },
+    {
+        "id": "518c0f27a7b1101d",
+        "type": "link in",
+        "z": "f694214ce746579e",
+        "name": "Autovalve Status (In)",
+        "links": [
+            "6b6c360175292616"
+        ],
+        "x": 1005,
+        "y": 1000,
+        "wires": [
+            [
+                "40d6e324e766206d"
+            ]
+        ]
+    },
+    {
+        "id": "4fa52675725d76d1",
+        "type": "link in",
+        "z": "f694214ce746579e",
+        "name": "link in 1",
+        "links": [
+            "02e5cf0e5d504f88"
+        ],
+        "x": 875,
+        "y": 960,
+        "wires": [
+            [
+                "f6c689034c84a6a9"
+            ]
+        ]
+    },
+    {
+        "id": "f6c689034c84a6a9",
+        "type": "not",
+        "z": "f694214ce746579e",
+        "name": "",
+        "property": "payload",
+        "showState": false,
+        "filter": false,
+        "x": 970,
+        "y": 960,
+        "wires": [
+            [
+                "40d6e324e766206d"
+            ]
+        ]
+    },
+    {
+        "id": "cdbd22fc72e86676",
+        "type": "ui_switch",
+        "z": "9165fb27074a613c",
+        "name": "Stream",
+        "label": "switch",
+        "tooltip": "",
+        "group": "57094b63e06db9a5",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "530102d7c00152ef",
+                "cd658b52eb32bf76"
+            ]
+        ]
+    },
+    {
+        "id": "9ac52433c1e7ba6b",
+        "type": "exec",
+        "z": "9165fb27074a613c",
+        "command": "cd python-labjack-daq && python readLJ.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1010,
+        "y": 140,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "edc8e2380994956b",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 120,
+        "wires": [
+            [
+                "cdbd22fc72e86676"
+            ]
+        ]
+    },
+    {
+        "id": "4aee3f4f6f063250",
+        "type": "status",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "scope": [
+            "9ac52433c1e7ba6b"
+        ],
+        "x": 500,
+        "y": 220,
+        "wires": [
+            [
+                "78c58af54bc0b333"
+            ]
+        ]
+    },
+    {
+        "id": "5365b230e4407b76",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "cdbd22fc72e86676"
+            ]
+        ]
+    },
+    {
+        "id": "530102d7c00152ef",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 140,
+        "wires": [
+            [
+                "9ac52433c1e7ba6b"
+            ]
+        ]
+    },
+    {
+        "id": "cd658b52eb32bf76",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 180,
+        "wires": [
+            [
+                "78c58af54bc0b333"
+            ]
+        ]
+    },
+    {
+        "id": "f6278869d3517154",
+        "type": "exec",
+        "z": "9165fb27074a613c",
+        "command": "kill -9 ",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 890,
+        "y": 220,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "78c58af54bc0b333",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "function 2",
+        "func": "// Check if msg.payload is not false\nif (msg.payload !== false) {\n    // Store the value of msg.status.text.split(':')[1] in context.global.pid\n    var statusText = msg.status.text || '';\n    var splitText = statusText.split(':');\n    \n    if (splitText.length > 1) {\n        // Extract PID from the split text\n        var pid_data = splitText[1].trim();\n        \n        // Set context.global.pid to the extracted PID\n        context.global.pid_data = pid_data;\n    } else {\n        node.warn('Invalid status text format');\n    }\n}\n\n// Otherwise, if msg.payload is false, set msg.payload to the PID\nif (msg.payload == false) {\nmsg.payload = context.global.pid_data;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 220,
+        "wires": [
+            [
+                "f6278869d3517154"
+            ]
+        ]
+    },
+    {
+        "id": "7b863f9b790d20d0",
+        "type": "ui_switch",
+        "z": "9165fb27074a613c",
+        "name": "Buffer",
+        "label": "switch",
+        "tooltip": "",
+        "group": "676648969881c30a",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 350,
+        "y": 380,
+        "wires": [
+            [
+                "14c17b626523c8b8",
+                "b5453ff10689c950"
+            ]
+        ]
+    },
+    {
+        "id": "e1b09ff19497bbf8",
+        "type": "exec",
+        "z": "9165fb27074a613c",
+        "command": "cd python-labjack-daq && python bufferdata.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1020,
+        "y": 380,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e4c696f29293cc33",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 360,
+        "wires": [
+            [
+                "7b863f9b790d20d0"
+            ]
+        ]
+    },
+    {
+        "id": "6f8522dd59dc454a",
+        "type": "status",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "scope": [
+            "e1b09ff19497bbf8"
+        ],
+        "x": 500,
+        "y": 460,
+        "wires": [
+            [
+                "8273b19b43fcade6"
+            ]
+        ]
+    },
+    {
+        "id": "42b6c00314396a28",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 400,
+        "wires": [
+            [
+                "7b863f9b790d20d0"
+            ]
+        ]
+    },
+    {
+        "id": "14c17b626523c8b8",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "e1b09ff19497bbf8"
+            ]
+        ]
+    },
+    {
+        "id": "b5453ff10689c950",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 420,
+        "wires": [
+            [
+                "8273b19b43fcade6"
+            ]
+        ]
+    },
+    {
+        "id": "4a8ab8531198c152",
+        "type": "exec",
+        "z": "9165fb27074a613c",
+        "command": "kill -9 ",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 890,
+        "y": 460,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8273b19b43fcade6",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "function 3",
+        "func": "// Check if msg.payload is not false\nif (msg.payload !== false) {\n    // Store the value of msg.status.text.split(':')[1] in context.global.pid\n    var statusText = msg.status.text || '';\n    var splitText = statusText.split(':');\n    \n    if (splitText.length > 1) {\n        // Extract PID from the split text\n        var pid_buffer = splitText[1].trim();\n        \n        // Set context.global.pid to the extracted PID\n        context.global.pid_buffer = pid_buffer;\n    } else {\n        node.warn('Invalid status text format');\n    }\n}\n\n// Otherwise, if msg.payload is false, set msg.payload to the PID\nif (msg.payload == false) {\nmsg.payload = context.global.pid_buffer;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 460,
+        "wires": [
+            [
+                "4a8ab8531198c152"
+            ]
+        ]
+    },
+    {
+        "id": "f7fee63ed8a93e4f",
+        "type": "status",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "scope": [
+            "8c5c60ebba6c1425"
+        ],
+        "x": 200,
+        "y": 720,
+        "wires": [
+            [
+                "048dcd5da9e3ee1a"
+            ]
+        ]
+    },
+    {
+        "id": "048dcd5da9e3ee1a",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "Analysis status",
+        "func": "// Read the status of the GPIO state\nmsg.payload = msg.status.text || '';\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 720,
+        "wires": [
+            [
+                "93518abda89c0ca2"
+            ]
+        ]
+    },
+    {
+        "id": "efac3090207dcd37",
+        "type": "change",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "autofill",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 720,
+        "wires": [
+            [
+                "6b6c360175292616"
+            ]
+        ]
+    },
+    {
+        "id": "8c5c60ebba6c1425",
+        "type": "ui_switch",
+        "z": "9165fb27074a613c",
+        "name": "Autofill",
+        "label": "switch",
+        "tooltip": "",
+        "group": "ab3c663ba053a7f7",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 350,
+        "y": 640,
+        "wires": [
+            [
+                "a8b483217ab6de57"
+            ]
+        ]
+    },
+    {
+        "id": "62b29ba3d7112ee5",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 620,
+        "wires": [
+            [
+                "8c5c60ebba6c1425"
+            ]
+        ]
+    },
+    {
+        "id": "31092d68bb3a4306",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 660,
+        "wires": [
+            [
+                "8c5c60ebba6c1425"
+            ]
+        ]
+    },
+    {
+        "id": "a8b483217ab6de57",
+        "type": "debug",
+        "z": "9165fb27074a613c",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "93518abda89c0ca2",
+        "type": "tobool",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "showState": false,
+        "filter": false,
+        "x": 510,
+        "y": 720,
+        "wires": [
+            [
+                "efac3090207dcd37"
+            ]
+        ]
+    },
+    {
+        "id": "6b6c360175292616",
+        "type": "link out",
+        "z": "9165fb27074a613c",
+        "name": "Autovalve Status (Out)",
+        "mode": "link",
+        "links": [
+            "518c0f27a7b1101d"
+        ],
+        "x": 765,
+        "y": 720,
+        "wires": []
+    }
+]
