@@ -4,27 +4,19 @@ import numpy as np
 import datetime as dt
 
 import RPi.GPIO as GPIO
-import __buffer__ as buff
 
-import logging
-from logging.handlers import RotatingFileHandler
-import traceback
-
-DATA = buff.autovalve()[0]
-LOG = buff.autovalve()[1]
-buffName = buff.autovalve()[2]
+DATA = 'DATA'
+buffName = 'LJanalysis.csv'
 
 analysis = {};results = {}
-analysis['overFill'] = buff.autovalve()[3]
-analysis['ident'] = buff.autovalve()[4]
-results['ident'] = buff.autovalve()[5]
-colspace = len(analysis['ident'])+len(results['ident'])
+analysis['overFill'] = 'RES7'
+analysis['ident'] = ['dRES1','dRES2']
 
-avgTime = buff.autovalve()[6]
+avgTime = 10*60 # seconds 
 
 buffr = os.path.join(DATA,buffName)
 
-valve = 14 #GPIO BCM pin for relay
+valve = 19 #GPIO BCM pin for relay
 status = False # Default valve status 
 
 fillTime = 6*60 # min*s
@@ -45,17 +37,6 @@ GPIO.setup(valve,GPIO.OUT)
 GPIO.output(valve,status)
 
 STATE = {False:'CLOSED',True:'OPEN'}
-
-# What is the buffer log filename?
-autoLog = 'autoLog_%s.txt'%dt.datetime.utcnow().timestamp()
-log = os.path.join(LOG,autoLog)
-# Make Log File
-logging.basicConfig(filename=log,level=logging.DEBUG,format='%(asctime)s %(message)s',filemode='a+')
-logger = logging.getLogger()
-#handler = RotatingFileHandler(log, maxBytes=10000, backupCount=5)
-#formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-#handler.setFormatter(formatter)
-#logger.addHandler(handler)
 
 def toggleWait():
     time.sleep(1.0)
@@ -81,11 +62,11 @@ if __name__ == '__main__':
                 continue
             if waiting:
                 if printstate == 1:
-                    logger.debug('waiting')
+                    # waiting for fill cycle
                     printstate = 0
                 openCount = 0
                 if data['%s'%analysis['overFill']][-1] > closeVolt:
-                    logger.debug('this is weird, the overfill sensor is active before a fill cycle...')
+                    # this is weird, the overfill sensor is active before a fill cycle...
                     toggleValve()
                     closeCount = 0
                     waiting = False
@@ -95,45 +76,45 @@ if __name__ == '__main__':
                     for strname in analysis['ident']:
                         if data['%s'%strname][-1] < openVolt:
                             openCount += 1
-                            logger.debug('openCount = %i'%openCount)
-                    if openCount == 3:
-                        logger.debug('openCount = 3: going to fill cycle')
+                            # openCount = %i'%openCount
+                    if openCount == len(analysis['ident']):
+                        # openCount = all: going to fill cycle
                         GPIO.output(valve,True)
                         waiting = False
                         filling = True
                         printstate = 1
             if filling:
                 if printstate == 1:
-                    logger.debug('filling start')
+                    # filling started
                     printstate = 0
                 startFill = dt.datetime.utcnow().timestamp()
                 closeCount = 0
                 if data['%s'%analysis['overFill']][-1] > closeVolt:
-                    logger.debug('overfill detected')
+                    # overfill detected: close valve
                     toggleValve()
                     filling = False
                     closing = True
                     printstate = 1
                 elif (dt.datetime.utcnow().timestamp()-startFill) > fillTime:
-                    logger.debug('fill time exceeded')
+                    # fill time exceeded: close valve
                     toggleValve()
                     filling = False
                     closing = True
                     printstate = 1
             if closing:
                 if printstate == 1:
-                    logger.debug('closing')
+                    # closing valve
                     printstate = 0
                 endFill = dt.datetime.utcnow().timestamp()
                 if dt.datetime.utcnow().timestamp()-endFill > avgTime:
                     toggleValve()
                     closeCount += 1
-                    logger.debug('close time exceeded: closecount = %i'%closeCount)
+                    # close time exceeded: close valve
                     endFill = dt.datetime.utcnow().timestamp()
                 if closeCount == 5:
                     alarm()
                 if data['%s'%analysis['overFill']][-1] < closedVolt:
-                    logger.debug('LN sensor has dropped: the valve is closed')
+                    # LN sensor has dropped: the valve is closed
                     closing = False
                     waiting = True
                     printstate = 1
@@ -142,8 +123,5 @@ if __name__ == '__main__':
             if (scanTime-procTime) > 0:
                 waitTime = np.abs(scanTime-procTime)
                 time.sleep(waitTime)
-        except Exception as e:
-            print(e)
-            logger.error(str(e))
-            logger.error(traceback.format_exc())
+        except:
             continue

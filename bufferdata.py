@@ -61,7 +61,7 @@ while True:
         reader = csv.reader(g, delimiter=';')
         row_count = sum(1 for row in reader)-1
         g.close()
-        
+
     # Check if the buffer is full
     #if row_count >= int(bufferSize/avgTime):
     if row_count >= int(3):
