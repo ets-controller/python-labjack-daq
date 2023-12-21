@@ -51,18 +51,17 @@ def toggleValve():
 def alarm():
     return 0
 
-def loadData():
+def loadData(buffr,strmr):
     buff = np.genfromtxt(buffr,comments='#',delimiter=';',names=True)
     strm = np.genfromtxt(strmr,comments='#',delimiter=';',names=True)
     return buff,strm
 
 if __name__ == '__main__':
     endFill = dt.datetime.utcnow().timestamp()
-    printstate = 1
     while True:
         ts[0] = dt.datetime.utcnow().timestamp()
         try:
-            buff,strm = loadData()
+            buff,strm = loadData(buffr,strmr)
         except:
             time.sleep(1)
             continue
@@ -73,10 +72,6 @@ if __name__ == '__main__':
         print('Fill: %f'%fill)
         
         if waiting:
-            if printstate == 1:
-                # waiting for fill cycle
-                printstate = 0
-            openCount = 0
             if overfill > closeVolt:
                 # this is weird, the overfill sensor is active before a fill cycle...
                 toggleValve()
@@ -101,11 +96,7 @@ if __name__ == '__main__':
                     GPIO.output(valve,True)
                     waiting = False
                     filling = True
-                    printstate = 1
         if filling:
-            if printstate == 1:
-                # filling started
-                printstate = 0
             startFill = dt.datetime.utcnow().timestamp()
             closeCount = 0
             if overfill > closeVolt:
@@ -113,23 +104,17 @@ if __name__ == '__main__':
                 toggleValve()
                 filling = False
                 closing = True
-                printstate = 1
             elif fill > fullVolt:
                 # Fill detected: close valve
                 toggleValve()
                 filling = False
                 closing = True
-                printstate = 1
             elif (dt.datetime.utcnow().timestamp()-startFill) > fillTime:
                 # fill time exceeded: close valve
                 toggleValve()
                 filling = False
                 closing = True
-                printstate = 1
         if closing:
-            if printstate == 1:
-                # closing valve
-                printstate = 0
             endFill = dt.datetime.utcnow().timestamp()
             if dt.datetime.utcnow().timestamp()-endFill > avgTime:
                 toggleValve()
@@ -142,7 +127,7 @@ if __name__ == '__main__':
                 # LN sensor has dropped: the valve is closed
                 closing = False
                 waiting = True
-                printstate = 1
+
         ts[1] = dt.datetime.utcnow().timestamp()
         procTime = ts[1]-ts[0]
         if (scanTime-procTime) > 0:
