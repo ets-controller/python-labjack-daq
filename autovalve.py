@@ -35,8 +35,8 @@ if __name__ == '__main__':
     valve = 19 #GPIO BCM pin for relay
     status = False # Default valve status 
 
-    fillTime = 6*60 # min*s
-    scanTime = 2
+    fillTime = 10*60 # min*s
+    scanTime = 1 # s
     cdTime = 15*60 # minimum time before next fill cycle
     ts = [0,0]
 
@@ -80,7 +80,7 @@ if __name__ == '__main__':
                     closeCount = 0
                     waiting = False
                     closing = True
-                elif fill > fullVolt:
+                if fill > fullVolt:
                     # this is weird, the overfill sensor is active before a fill cycle...
                     toggleValve()
                     closeCount = 0
@@ -105,12 +105,12 @@ if __name__ == '__main__':
                     toggleValve()
                     filling = False
                     closing = True
-                elif fill > fullVolt:
+                if fill > fullVolt:
                     # Fill detected: close valve
                     toggleValve()
                     filling = False
                     closing = True
-                elif (dt.datetime.utcnow().timestamp()-startFill) > fillTime:
+                if (dt.datetime.utcnow().timestamp()-startFill) > fillTime:
                     # fill time exceeded: close valve
                     toggleValve()
                     filling = False
@@ -124,9 +124,10 @@ if __name__ == '__main__':
                     # close time exceeded: close valve
                     endFill = dt.datetime.utcnow().timestamp()
                 if closeCount == 5:
+                    toggleValve()
                     alarm()
                 if overfill < closedVolt:
-                    # LN sensor has dropped: the valve is closed
+                    # Ssensor value has dropped: the valve is closed
                     closing = False
                     waiting = True
 
