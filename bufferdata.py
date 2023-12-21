@@ -113,12 +113,13 @@ while True:
                 else:
                     f.write('%s;'%name)
             # Write the data
-            for i in range(len(sigproc['timestamp'])):
-                for name in newNames:
-                    if name == newNames[-1]:
-                        f.write('%.5f\n'%sigproc[name][i])
-                    else:
-                        f.write('%.5f;'%sigproc[name][i])
+            #for i in range(len(sigproc['timestamp'])):
+            i = -1
+            for name in newNames:
+                if name == newNames[-1]:
+                    f.write('%.5f\n'%sigproc[name][i])
+                else:
+                    f.write('%.5f;'%sigproc[name][i])
             f.close()
 
     # Get the time since the loop started
