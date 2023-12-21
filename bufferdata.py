@@ -104,23 +104,23 @@ while True:
             newNames.append(name)
         for name in sensorNames:
             newNames.append(name)
-        # Open the buffer file and write the data
-        with open('DATA/LJanalysis.csv','w') as f:
-            # Write the header
-            for name in newNames:
-                if name == newNames[-1]:
-                    f.write('%s\n'%name)
-                else:
-                    f.write('%s;'%name)
-            # Write the data
-            #for i in range(len(sigproc['timestamp'])):
-            i = -1
-            for name in newNames:
-                if name == newNames[-1]:
-                    f.write('%.5f\n'%sigproc[name][i])
-                else:
-                    f.write('%.5f;'%sigproc[name][i])
-            f.close()
+        # Open the analysis file and write the data
+        f = open('DATA/LJanalysis.csv','w')
+        # Write the header
+        for name in newNames:
+            if name == newNames[-1]:
+                f.write('%s\n'%name)
+            else:
+                f.write('%s;'%name)
+        # Write the data
+        #for i in range(len(sigproc['timestamp'])):
+        i = -1
+        for name in newNames:
+            if name == newNames[-1]:
+                f.write('%.5f\n'%sigproc[name][i])
+            else:
+                f.write('%.5f;'%sigproc[name][i])
+        f.close()
 
     # Get the time since the loop started
     ts = time.time()-ts
