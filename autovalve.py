@@ -64,20 +64,19 @@ if __name__ == '__main__':
                 overfill = strm['%s'%closeSensor[0]]
                 fill = buff['%s'%closeSensor[1]][-1]
             except:
-                print('cannot load data')
+                #print('cannot load data')
                 time.sleep(1)
                 continue
 
-            print('Overfill if 9.8 < %f'%overfill)
-            print('Full if  9.45 < %f'%fill)
+            #print('Overfill if %s < %f'%(closeVolt,overfill))
+            #print('Full if  %s < %f'%(fullVolt,fill))
             
             if waiting:
-                print('Waiting for fill cycle')
+                #print('Waiting for fill cycle')
                 openCount = 0
                 if overfill > closeVolt:
                     # this is weird, the overfill sensor is active before a fill cycle...
                     toggleValve()
-                    closeCount = 0
                     waiting = False
                     closing = True
                 elif dt.datetime.utcnow().timestamp() - endFill > cdTime:
@@ -91,7 +90,7 @@ if __name__ == '__main__':
                         waiting = False
                         filling = True
             if filling:
-                print('Filling')
+                #print('Filling')
                 startFill = dt.datetime.utcnow().timestamp()
                 closeCount = 0
                 if overfill > closeVolt:
@@ -107,7 +106,7 @@ if __name__ == '__main__':
                     filling = False
                     closing = True
             if closing:
-                print('Closing')
+                #print('Closing')
                 toggleValve()
                 endFill = dt.datetime.utcnow().timestamp()
                 time.sleep(5)
