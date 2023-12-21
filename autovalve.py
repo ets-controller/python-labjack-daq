@@ -5,41 +5,6 @@ import datetime as dt
 
 import RPi.GPIO as GPIO
 
-DATA = 'DATA'
-buffName = 'LJanalysis.csv'
-strmName = 'LJdata.csv'
-
-closeSensor = ['RES7','RES1']
-openSensor = ['dRES1','dRES2']
-
-avgTime = 10*60 # seconds 
-
-buffr = os.path.join(DATA,buffName)
-strmr = os.path.join(DATA,strmName)
-
-valve = 19 #GPIO BCM pin for relay
-status = False # Default valve status 
-
-fillTime = 6*60 # min*s
-scanTime = 2
-cdTime = 15*60 # minimum time before next fill cycle
-ts = [0,0]
-
-closeVolt = 9.8
-closedVolt = 9.0
-openVolt = -1E-4
-fullVolt = 9.45
-
-waiting = True
-filling = False
-closing = False
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(valve,GPIO.OUT)
-GPIO.output(valve,status)
-
-STATE = {False:'CLOSED',True:'OPEN'}
-
 def toggleWait():
     time.sleep(1.0)
 
@@ -57,6 +22,40 @@ def loadData(buffr,strmr):
     return buff,strm
 
 if __name__ == '__main__':
+    DATA = 'DATA'
+    buffName = 'LJanalysis.csv'
+    strmName = 'LJdata.csv'
+
+    closeSensor = ['RES7','RES1']
+    openSensor = ['dRES1','dRES2']
+
+    avgTime = 10*60 # seconds 
+
+    buffr = os.path.join(DATA,buffName)
+    strmr = os.path.join(DATA,strmName)
+
+    valve = 19 #GPIO BCM pin for relay
+    status = False # Default valve status 
+
+    fillTime = 6*60 # min*s
+    scanTime = 2
+    cdTime = 15*60 # minimum time before next fill cycle
+    ts = [0,0]
+
+    closeVolt = 9.8
+    closedVolt = 9.0
+    openVolt = -1E-4
+    fullVolt = 9.45
+
+    waiting = True
+    filling = False
+    closing = False
+
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(valve,GPIO.OUT)
+    GPIO.output(valve,status)
+
+    STATE = {False:'CLOSED',True:'OPEN'}
     endFill = dt.datetime.utcnow().timestamp()
     while True:
         try:
