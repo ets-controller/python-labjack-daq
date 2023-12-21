@@ -25,7 +25,7 @@ if __name__ == '__main__':
     strmName = 'LJdata.csv'
 
     closeSensor = ['RES7','RES1']
-    openSensor = ['dRES1','dRES2']
+    openSensor = ['dRES1','dRES2','dRES7']
 
     avgTime = 10*60 # seconds 
 
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     closeVolt = 9.8
     closedVolt = 9.0
     openVolt = -1E-4
-    fullVolt = 9.45
+    fullVolt = 9.50
 
     waiting = True
     filling = False
@@ -62,7 +62,7 @@ if __name__ == '__main__':
                 buff,strm = loadData(buffr,strmr)
                 #print(buff,strm)
                 overfill = strm['%s'%closeSensor[0]]
-                fill = strm['%s'%closeSensor[1]]
+                fill = buff['%s'%closeSensor[1]]
             except:
                 print('cannot load data')
                 time.sleep(1)
@@ -75,12 +75,6 @@ if __name__ == '__main__':
                 print('Waiting for fill cycle')
                 openCount = 0
                 if overfill > closeVolt:
-                    # this is weird, the overfill sensor is active before a fill cycle...
-                    toggleValve()
-                    closeCount = 0
-                    waiting = False
-                    closing = True
-                if fill > fullVolt:
                     # this is weird, the overfill sensor is active before a fill cycle...
                     toggleValve()
                     closeCount = 0
@@ -102,22 +96,21 @@ if __name__ == '__main__':
                 closeCount = 0
                 if overfill > closeVolt:
                     # overfill detected: close valve
-                    toggleValve()
                     filling = False
                     closing = True
                 if fill > fullVolt:
                     # Fill detected: close valve
-                    toggleValve()
                     filling = False
                     closing = True
                 if (dt.datetime.utcnow().timestamp()-startFill) > fillTime:
                     # fill time exceeded: close valve
-                    toggleValve()
                     filling = False
                     closing = True
             if closing:
                 print('Closing')
+                toggleValve()
                 endFill = dt.datetime.utcnow().timestamp()
+                time.sleep(5)
                 if dt.datetime.utcnow().timestamp()-endFill > avgTime:
                     toggleValve()
                     closeCount += 1
