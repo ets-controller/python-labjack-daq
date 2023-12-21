@@ -62,7 +62,7 @@ if __name__ == '__main__':
                 buff,strm = loadData(buffr,strmr)
                 #print(buff,strm)
                 overfill = strm['%s'%closeSensor[0]]
-                fill = buff['%s'%closeSensor[1]]
+                fill = buff['%s'%closeSensor[1]][-1]
             except:
                 print('cannot load data')
                 time.sleep(1)
