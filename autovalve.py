@@ -10,8 +10,6 @@ def toggleWait():
 
 def toggleValve():
     GPIO.output(valve,False);toggleWait()
-    GPIO.output(valve,True);toggleWait()
-    GPIO.output(valve,False)
 
 def alarm():
     return 0
@@ -70,10 +68,11 @@ if __name__ == '__main__':
                 time.sleep(1)
                 continue
 
-            #print('Overfill: %f'%overfill)
-            #print('Fill: %f'%fill)
+            print('Overfill if 9.8 < %f'%overfill)
+            print('Full if  9.45 < %f'%fill)
             
             if waiting:
+                print('Waiting for fill cycle')
                 openCount = 0
                 if overfill > closeVolt:
                     # this is weird, the overfill sensor is active before a fill cycle...
@@ -98,6 +97,7 @@ if __name__ == '__main__':
                         waiting = False
                         filling = True
             if filling:
+                print('Filling')
                 startFill = dt.datetime.utcnow().timestamp()
                 closeCount = 0
                 if overfill > closeVolt:
@@ -116,6 +116,7 @@ if __name__ == '__main__':
                     filling = False
                     closing = True
             if closing:
+                print('Closing')
                 endFill = dt.datetime.utcnow().timestamp()
                 if dt.datetime.utcnow().timestamp()-endFill > avgTime:
                     toggleValve()
