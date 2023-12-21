@@ -53,14 +53,18 @@ while True:
                 with open('DATA/LJbuffer.csv','a') as f:
                     f.write('%.5f;'%avgVal[name])
                     f.close()   
+    # Check if there are more than 3 data points in the buffer file, if there is
+
     # If there are more than 30 minutes worth of data points in the buffer, delete the oldest data point
     # Check how many rows are in the buffer file, excluding the header
     with open('DATA/LJbuffer.csv','r') as g:
         reader = csv.reader(g, delimiter=';')
         row_count = sum(1 for row in reader)-1
         g.close()
+        
     # Check if the buffer is full
-    if row_count >= int(bufferSize/avgTime):
+    #if row_count >= int(bufferSize/avgTime):
+    if row_count >= int(3):
         # Open the buffer file and delete the first row
         with open('DATA/LJbuffer.csv','r') as g:
             reader = csv.reader(g, delimiter=';')
