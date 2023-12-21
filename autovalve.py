@@ -62,7 +62,7 @@ if __name__ == '__main__':
             ts[0] = dt.datetime.utcnow().timestamp()
             try:
                 buff,strm = loadData(buffr,strmr)
-                print(buff,strm)
+                #print(buff,strm)
                 overfill = strm['%s'%closeSensor[0]]
                 fill = strm['%s'%closeSensor[1]]
             except:
@@ -70,8 +70,8 @@ if __name__ == '__main__':
                 time.sleep(1)
                 continue
 
-            print('Overfill: %f'%overfill)
-            print('Fill: %f'%fill)
+            #print('Overfill: %f'%overfill)
+            #print('Fill: %f'%fill)
             
             if waiting:
                 openCount = 0
