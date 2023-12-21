@@ -59,78 +59,81 @@ def loadData(buffr,strmr):
 if __name__ == '__main__':
     endFill = dt.datetime.utcnow().timestamp()
     while True:
-        ts[0] = dt.datetime.utcnow().timestamp()
         try:
-            buff,strm = loadData(buffr,strmr)
-            overfill = strm['%s'%closeSensor[0]][-1]
-            fill = strm['%s'%closeSensor[1]][-1]
-        except:
-            time.sleep(1)
-            continue
-        
-        print('Overfill: %f'%overfill)
-        print('Fill: %f'%fill)
-        
-        if waiting:
-            openCount = 0
-            if overfill > closeVolt:
-                # this is weird, the overfill sensor is active before a fill cycle...
-                toggleValve()
-                closeCount = 0
-                waiting = False
-                closing = True
-                printstate = 1
-            elif fill > fullVolt:
-                # this is weird, the overfill sensor is active before a fill cycle...
-                toggleValve()
-                closeCount = 0
-                waiting = False
-                closing = True
-                printstate = 1
-            elif dt.datetime.utcnow().timestamp() - endFill > cdTime:
-                for strname in openSensor:
-                    if data['%s'%strname][-1] < openVolt:
-                        openCount += 1
-                        # openCount = %i'%openCount
-                if openCount == len(openSensor):
-                    # openCount = all: going to fill cycle
-                    GPIO.output(valve,True)
-                    waiting = False
-                    filling = True
-        if filling:
-            startFill = dt.datetime.utcnow().timestamp()
-            closeCount = 0
-            if overfill > closeVolt:
-                # overfill detected: close valve
-                toggleValve()
-                filling = False
-                closing = True
-            elif fill > fullVolt:
-                # Fill detected: close valve
-                toggleValve()
-                filling = False
-                closing = True
-            elif (dt.datetime.utcnow().timestamp()-startFill) > fillTime:
-                # fill time exceeded: close valve
-                toggleValve()
-                filling = False
-                closing = True
-        if closing:
-            endFill = dt.datetime.utcnow().timestamp()
-            if dt.datetime.utcnow().timestamp()-endFill > avgTime:
-                toggleValve()
-                closeCount += 1
-                # close time exceeded: close valve
-                endFill = dt.datetime.utcnow().timestamp()
-            if closeCount == 5:
-                alarm()
-            if overfill < closedVolt:
-                # LN sensor has dropped: the valve is closed
-                closing = False
-                waiting = True
+            ts[0] = dt.datetime.utcnow().timestamp()
+            try:
+                buff,strm = loadData(buffr,strmr)
+                overfill = strm['%s'%closeSensor[0]][-1]
+                fill = strm['%s'%closeSensor[1]][-1]
+            except:
+                print('cannot load data')
+                time.sleep(1)
+                continue
 
-        ts[1] = dt.datetime.utcnow().timestamp()
-        procTime = ts[1]-ts[0]
-        if (scanTime-procTime) > 0:
-            waitTime = np.abs(scanTime-procTime)
-            time.sleep(waitTime)
+            print('Overfill: %f'%overfill)
+            print('Fill: %f'%fill)
+            
+            if waiting:
+                openCount = 0
+                if overfill > closeVolt:
+                    # this is weird, the overfill sensor is active before a fill cycle...
+                    toggleValve()
+                    closeCount = 0
+                    waiting = False
+                    closing = True
+                elif fill > fullVolt:
+                    # this is weird, the overfill sensor is active before a fill cycle...
+                    toggleValve()
+                    closeCount = 0
+                    waiting = False
+                    closing = True
+                elif dt.datetime.utcnow().timestamp() - endFill > cdTime:
+                    for strname in openSensor:
+                        if data['%s'%strname][-1] < openVolt:
+                            openCount += 1
+                            # openCount = %i'%openCount
+                    if openCount == len(openSensor):
+                        # openCount = all: going to fill cycle
+                        GPIO.output(valve,True)
+                        waiting = False
+                        filling = True
+            if filling:
+                startFill = dt.datetime.utcnow().timestamp()
+                closeCount = 0
+                if overfill > closeVolt:
+                    # overfill detected: close valve
+                    toggleValve()
+                    filling = False
+                    closing = True
+                elif fill > fullVolt:
+                    # Fill detected: close valve
+                    toggleValve()
+                    filling = False
+                    closing = True
+                elif (dt.datetime.utcnow().timestamp()-startFill) > fillTime:
+                    # fill time exceeded: close valve
+                    toggleValve()
+                    filling = False
+                    closing = True
+            if closing:
+                endFill = dt.datetime.utcnow().timestamp()
+                if dt.datetime.utcnow().timestamp()-endFill > avgTime:
+                    toggleValve()
+                    closeCount += 1
+                    # close time exceeded: close valve
+                    endFill = dt.datetime.utcnow().timestamp()
+                if closeCount == 5:
+                    alarm()
+                if overfill < closedVolt:
+                    # LN sensor has dropped: the valve is closed
+                    closing = False
+                    waiting = True
+
+            ts[1] = dt.datetime.utcnow().timestamp()
+            procTime = ts[1]-ts[0]
+            if (scanTime-procTime) > 0:
+                waitTime = np.abs(scanTime-procTime)
+                time.sleep(waitTime)
+        except KeyboardInterrupt:
+            GPIO.cleanup()
+            break
