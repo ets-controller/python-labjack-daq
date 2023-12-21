@@ -72,6 +72,7 @@ if __name__ == '__main__':
         print('Fill: %f'%fill)
         
         if waiting:
+            openCount = 0
             if overfill > closeVolt:
                 # this is weird, the overfill sensor is active before a fill cycle...
                 toggleValve()
