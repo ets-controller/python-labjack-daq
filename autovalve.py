@@ -62,6 +62,7 @@ if __name__ == '__main__':
             ts[0] = dt.datetime.utcnow().timestamp()
             try:
                 buff,strm = loadData(buffr,strmr)
+                print(buff,strm)
                 overfill = strm['%s'%closeSensor[0]][-1]
                 fill = strm['%s'%closeSensor[1]][-1]
             except:
