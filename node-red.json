@@ -8,9 +8,9 @@
         "env": []
     },
     {
-        "id": "622b7c2ad32f0fe6",
+        "id": "9165fb27074a613c",
         "type": "tab",
-        "label": "Relays",
+        "label": "Python LabJack",
         "disabled": false,
         "info": "",
         "env": []
@@ -24,9 +24,9 @@
         "env": []
     },
     {
-        "id": "9165fb27074a613c",
+        "id": "622b7c2ad32f0fe6",
         "type": "tab",
-        "label": "LabJack",
+        "label": "Relays",
         "disabled": false,
         "info": "",
         "env": []
@@ -267,9 +267,20 @@
     {
         "id": "ab3c663ba053a7f7",
         "type": "ui_group",
-        "name": "Autofill",
+        "name": "Autovalve",
         "tab": "d99d97e004fee415",
         "order": 8,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8b82dc2997a71777",
+        "type": "ui_group",
+        "name": "Autovalve",
+        "tab": "d99d97e004fee415",
+        "order": 9,
         "disp": true,
         "width": "6",
         "collapse": false,
@@ -313,7 +324,10 @@
         "links": [
             "132079cdc6e501cd",
             "373e3993eddf87a0",
-            "1c1ba824327aad3a"
+            "1c1ba824327aad3a",
+            "2e088191f53732bb",
+            "28ef6f481cfa4dee",
+            "ff3b48c0eb0f7b11"
         ],
         "x": 355,
         "y": 140,
@@ -343,7 +357,10 @@
         "z": "4901a0f32eb7f3bc",
         "name": "Relay State (In)",
         "links": [
-            "de1fb10928b52cfb"
+            "de1fb10928b52cfb",
+            "c65f979cfb45f726",
+            "4577ce3c494e411a",
+            "b7b6e6fdcef57f50"
         ],
         "x": 245,
         "y": 320,
@@ -462,6 +479,1883 @@
         "wires": []
     },
     {
+        "id": "cdbd22fc72e86676",
+        "type": "ui_switch",
+        "z": "9165fb27074a613c",
+        "name": "Stream",
+        "label": "switch",
+        "tooltip": "",
+        "group": "57094b63e06db9a5",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 360,
+        "y": 220,
+        "wires": [
+            [
+                "530102d7c00152ef",
+                "cd658b52eb32bf76"
+            ]
+        ]
+    },
+    {
+        "id": "9ac52433c1e7ba6b",
+        "type": "exec",
+        "z": "9165fb27074a613c",
+        "command": "cd python-labjack-daq && python readLJ.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1010,
+        "y": 220,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "edc8e2380994956b",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "cdbd22fc72e86676"
+            ]
+        ]
+    },
+    {
+        "id": "4aee3f4f6f063250",
+        "type": "status",
+        "z": "9165fb27074a613c",
+        "name": "Stream status",
+        "scope": [
+            "9ac52433c1e7ba6b"
+        ],
+        "x": 350,
+        "y": 300,
+        "wires": [
+            [
+                "78c58af54bc0b333",
+                "f55dfaa454a59df7"
+            ]
+        ]
+    },
+    {
+        "id": "5365b230e4407b76",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "cdbd22fc72e86676"
+            ]
+        ]
+    },
+    {
+        "id": "530102d7c00152ef",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 220,
+        "wires": [
+            [
+                "9ac52433c1e7ba6b"
+            ]
+        ]
+    },
+    {
+        "id": "cd658b52eb32bf76",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "78c58af54bc0b333"
+            ]
+        ]
+    },
+    {
+        "id": "f6278869d3517154",
+        "type": "exec",
+        "z": "9165fb27074a613c",
+        "command": "kill -9 ",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 890,
+        "y": 300,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "78c58af54bc0b333",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "Get PID for kill",
+        "func": "// Check if msg.payload is not false\nif (msg.payload !== false) {\n    // Store the value of msg.status.text.split(':')[1] in context.global.pid\n    var statusText = msg.status.text || '';\n    var splitText = statusText.split(':');\n    \n    if (splitText.length > 1) {\n        // Extract PID from the split text\n        var pid_data = splitText[1].trim();\n        \n        // Set context.global.pid to the extracted PID\n        context.global.pid_data = pid_data;\n    } else {\n        node.warn('Invalid status text format');\n    }\n}\n\n// Otherwise, if msg.payload is false, set msg.payload to the PID\nif (msg.payload == false) {\nmsg.payload = context.global.pid_data;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 300,
+        "wires": [
+            [
+                "f6278869d3517154"
+            ]
+        ]
+    },
+    {
+        "id": "7b863f9b790d20d0",
+        "type": "ui_switch",
+        "z": "9165fb27074a613c",
+        "name": "Buffer",
+        "label": "switch",
+        "tooltip": "",
+        "group": "676648969881c30a",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 350,
+        "y": 740,
+        "wires": [
+            [
+                "14c17b626523c8b8",
+                "b5453ff10689c950"
+            ]
+        ]
+    },
+    {
+        "id": "e1b09ff19497bbf8",
+        "type": "exec",
+        "z": "9165fb27074a613c",
+        "command": "cd python-labjack-daq && python bufferdata.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1020,
+        "y": 740,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e4c696f29293cc33",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 720,
+        "wires": [
+            [
+                "7b863f9b790d20d0"
+            ]
+        ]
+    },
+    {
+        "id": "6f8522dd59dc454a",
+        "type": "status",
+        "z": "9165fb27074a613c",
+        "name": "Buffer status",
+        "scope": [
+            "e1b09ff19497bbf8"
+        ],
+        "x": 350,
+        "y": 820,
+        "wires": [
+            [
+                "8273b19b43fcade6",
+                "462dc116804f45e5"
+            ]
+        ]
+    },
+    {
+        "id": "42b6c00314396a28",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 760,
+        "wires": [
+            [
+                "7b863f9b790d20d0"
+            ]
+        ]
+    },
+    {
+        "id": "14c17b626523c8b8",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 740,
+        "wires": [
+            [
+                "e1b09ff19497bbf8"
+            ]
+        ]
+    },
+    {
+        "id": "b5453ff10689c950",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 780,
+        "wires": [
+            [
+                "8273b19b43fcade6"
+            ]
+        ]
+    },
+    {
+        "id": "4a8ab8531198c152",
+        "type": "exec",
+        "z": "9165fb27074a613c",
+        "command": "kill -9 ",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 890,
+        "y": 820,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8273b19b43fcade6",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "Get PID for kill",
+        "func": "// Check if msg.payload is not false\nif (msg.payload !== false) {\n    // Store the value of msg.status.text.split(':')[1] in context.global.pid\n    var statusText = msg.status.text || '';\n    var splitText = statusText.split(':');\n    \n    if (splitText.length > 1) {\n        // Extract PID from the split text\n        var pid_buffer = splitText[1].trim();\n        \n        // Set context.global.pid to the extracted PID\n        context.global.pid_buffer = pid_buffer;\n    } else {\n        node.warn('Invalid status text format');\n    }\n}\n\n// Otherwise, if msg.payload is false, set msg.payload to the PID\nif (msg.payload == false) {\nmsg.payload = context.global.pid_buffer;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 820,
+        "wires": [
+            [
+                "4a8ab8531198c152"
+            ]
+        ]
+    },
+    {
+        "id": "1ce495e82af2d518",
+        "type": "status",
+        "z": "9165fb27074a613c",
+        "name": "Switch status",
+        "scope": [
+            "7b863f9b790d20d0"
+        ],
+        "x": 250,
+        "y": 980,
+        "wires": [
+            [
+                "2971e6f8c58b9232"
+            ]
+        ]
+    },
+    {
+        "id": "2971e6f8c58b9232",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "Print switch status",
+        "func": "// Store the value of msg.status.text.split(':')[1] in context.global.pid\nvar statusText = msg.status.text || '';\nmsg.payload = statusText;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 980,
+        "wires": [
+            [
+                "7885a6da17ce749d"
+            ]
+        ]
+    },
+    {
+        "id": "3c15510c719dca75",
+        "type": "tobool",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "showState": false,
+        "filter": false,
+        "x": 770,
+        "y": 980,
+        "wires": [
+            [
+                "346e69c74f005b6e",
+                "4af18da324f18ac9"
+            ]
+        ]
+    },
+    {
+        "id": "7885a6da17ce749d",
+        "type": "change",
+        "z": "9165fb27074a613c",
+        "name": "Bufferswitch",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Bufferswitch",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 980,
+        "wires": [
+            [
+                "3c15510c719dca75"
+            ]
+        ]
+    },
+    {
+        "id": "462dc116804f45e5",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "Check fault",
+        "func": "// Store the value of msg.status.text.split(':')[1] in context.global.pid\nvar statusColor = msg.status.fill || '';\n\nmsg.payload = statusColor;\nif (statusColor == 'blue'){\n    // Set the message payload to false\n    msg.payload = 'false'\n}\nif (statusColor == 'red'){\n    // Set the message payload to true\n    msg.payload = 'true'\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 940,
+        "wires": [
+            [
+                "3dafb9e70f5e447a"
+            ]
+        ]
+    },
+    {
+        "id": "ae5630bc9c52a468",
+        "type": "tobool",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "showState": false,
+        "filter": false,
+        "x": 1090,
+        "y": 940,
+        "wires": [
+            [
+                "4bfef54d7c25b851"
+            ]
+        ]
+    },
+    {
+        "id": "3dafb9e70f5e447a",
+        "type": "change",
+        "z": "9165fb27074a613c",
+        "name": "Bufferon",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Bufferon",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 940,
+        "wires": [
+            [
+                "ae5630bc9c52a468"
+            ]
+        ]
+    },
+    {
+        "id": "4bfef54d7c25b851",
+        "type": "and",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "topic": "",
+        "property": "payload",
+        "minData": "2",
+        "filter": false,
+        "x": 1230,
+        "y": 960,
+        "wires": [
+            [
+                "c6b86ce0c8f0d9c0"
+            ]
+        ]
+    },
+    {
+        "id": "346e69c74f005b6e",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 910,
+        "y": 1020,
+        "wires": [
+            [
+                "ef6a7f6bfbb848ad"
+            ]
+        ]
+    },
+    {
+        "id": "4af18da324f18ac9",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1050,
+        "y": 980,
+        "wires": [
+            [
+                "4bfef54d7c25b851"
+            ]
+        ]
+    },
+    {
+        "id": "ef6a7f6bfbb848ad",
+        "type": "delay",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1040,
+        "y": 1020,
+        "wires": [
+            [
+                "4bfef54d7c25b851"
+            ]
+        ]
+    },
+    {
+        "id": "2b6b3603ba45ddc3",
+        "type": "link out",
+        "z": "9165fb27074a613c",
+        "name": "Restart Buffer",
+        "mode": "link",
+        "links": [
+            "52ced69b2c7b6b78",
+            "75b75b20e850a462",
+            "21593eb3d9a2c1c4"
+        ],
+        "x": 1435,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "184a7d80e8981c3f",
+        "type": "status",
+        "z": "9165fb27074a613c",
+        "name": "Switch status",
+        "scope": [
+            "7b863f9b790d20d0"
+        ],
+        "x": 210,
+        "y": 460,
+        "wires": [
+            [
+                "a1393581c87d9105"
+            ]
+        ]
+    },
+    {
+        "id": "a1393581c87d9105",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "Print switch status",
+        "func": "// Store the value of msg.status.text.split(':')[1] in context.global.pid\nvar statusText = msg.status.text || '';\nmsg.payload = statusText;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 460,
+        "wires": [
+            [
+                "f71c8fc4c9e47b71"
+            ]
+        ]
+    },
+    {
+        "id": "3fc223a32cde7bc4",
+        "type": "tobool",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "showState": false,
+        "filter": false,
+        "x": 750,
+        "y": 460,
+        "wires": [
+            [
+                "bbc77055a7180393",
+                "153641632b43fd46"
+            ]
+        ]
+    },
+    {
+        "id": "f71c8fc4c9e47b71",
+        "type": "change",
+        "z": "9165fb27074a613c",
+        "name": "Streamswitch",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Streamswitch",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 460,
+        "wires": [
+            [
+                "3fc223a32cde7bc4"
+            ]
+        ]
+    },
+    {
+        "id": "f55dfaa454a59df7",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "Check fault",
+        "func": "// Store the value of msg.status.text.split(':')[1] in context.global.pid\nvar statusColor = msg.status.fill || '';\n\nmsg.payload = statusColor;\nif (statusColor == 'blue'){\n    // Set the message payload to false\n    msg.payload = 'false'\n}\nif (statusColor == 'red'){\n    // Set the message payload to true\n    msg.payload = 'true'\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 420,
+        "wires": [
+            [
+                "8644cff661e8acd7"
+            ]
+        ]
+    },
+    {
+        "id": "90c2dbc247da31f2",
+        "type": "tobool",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "showState": false,
+        "filter": false,
+        "x": 1070,
+        "y": 420,
+        "wires": [
+            [
+                "4f1c5ea04d62ea45"
+            ]
+        ]
+    },
+    {
+        "id": "8644cff661e8acd7",
+        "type": "change",
+        "z": "9165fb27074a613c",
+        "name": "Switchon",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Switchon",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 420,
+        "wires": [
+            [
+                "90c2dbc247da31f2"
+            ]
+        ]
+    },
+    {
+        "id": "4f1c5ea04d62ea45",
+        "type": "and",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "topic": "",
+        "property": "payload",
+        "minData": "2",
+        "filter": false,
+        "x": 1210,
+        "y": 440,
+        "wires": [
+            [
+                "ad380f1daa6c64ad"
+            ]
+        ]
+    },
+    {
+        "id": "bbc77055a7180393",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 560,
+        "wires": [
+            [
+                "4188a7f6f87fa7eb"
+            ]
+        ]
+    },
+    {
+        "id": "153641632b43fd46",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1030,
+        "y": 460,
+        "wires": [
+            [
+                "4f1c5ea04d62ea45"
+            ]
+        ]
+    },
+    {
+        "id": "4188a7f6f87fa7eb",
+        "type": "delay",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1020,
+        "y": 560,
+        "wires": [
+            [
+                "4f1c5ea04d62ea45"
+            ]
+        ]
+    },
+    {
+        "id": "bde1776655858ec6",
+        "type": "link out",
+        "z": "9165fb27074a613c",
+        "name": "Restart Stream",
+        "mode": "link",
+        "links": [
+            "8531dc64366b4907",
+            "c0010bcc9143a4ea"
+        ],
+        "x": 1435,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "c6b86ce0c8f0d9c0",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1350,
+        "y": 960,
+        "wires": [
+            [
+                "2b6b3603ba45ddc3"
+            ]
+        ]
+    },
+    {
+        "id": "75b75b20e850a462",
+        "type": "link in",
+        "z": "9165fb27074a613c",
+        "name": "link in 1",
+        "links": [
+            "2b6b3603ba45ddc3"
+        ],
+        "x": 65,
+        "y": 640,
+        "wires": [
+            [
+                "ed30c5dcd40e8f4f",
+                "18a5e13cd314c84e"
+            ]
+        ]
+    },
+    {
+        "id": "ed30c5dcd40e8f4f",
+        "type": "not",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "showState": false,
+        "filter": false,
+        "x": 190,
+        "y": 640,
+        "wires": [
+            [
+                "7b863f9b790d20d0"
+            ]
+        ]
+    },
+    {
+        "id": "18a5e13cd314c84e",
+        "type": "delay",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 180,
+        "y": 680,
+        "wires": [
+            [
+                "7b863f9b790d20d0"
+            ]
+        ]
+    },
+    {
+        "id": "ad380f1daa6c64ad",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1350,
+        "y": 440,
+        "wires": [
+            [
+                "bde1776655858ec6"
+            ]
+        ]
+    },
+    {
+        "id": "c0010bcc9143a4ea",
+        "type": "link in",
+        "z": "9165fb27074a613c",
+        "name": "link in 2",
+        "links": [
+            "bde1776655858ec6"
+        ],
+        "x": 65,
+        "y": 120,
+        "wires": [
+            [
+                "f2d6788ef3474a5c",
+                "96e31b0ca29b8454"
+            ]
+        ]
+    },
+    {
+        "id": "f2d6788ef3474a5c",
+        "type": "not",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "showState": false,
+        "filter": false,
+        "x": 190,
+        "y": 120,
+        "wires": [
+            [
+                "cdbd22fc72e86676"
+            ]
+        ]
+    },
+    {
+        "id": "96e31b0ca29b8454",
+        "type": "delay",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "cdbd22fc72e86676"
+            ]
+        ]
+    },
+    {
+        "id": "3355e8551f4a4208",
+        "type": "comment",
+        "z": "9165fb27074a613c",
+        "name": "Check whether the switch state matches the program state",
+        "info": "",
+        "x": 750,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "fc8a3ea3ea1f80d2",
+        "type": "comment",
+        "z": "9165fb27074a613c",
+        "name": "Check whether the switch state matches the program state",
+        "info": "",
+        "x": 730,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c5080d0fb9d07d59",
+        "type": "comment",
+        "z": "9165fb27074a613c",
+        "name": "Run the python data streaming program",
+        "info": "",
+        "x": 450,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "6f3a184ba760d1fc",
+        "type": "comment",
+        "z": "9165fb27074a613c",
+        "name": "Run the python buffer program",
+        "info": "",
+        "x": 420,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "44a9aa61fe43dfc5",
+        "type": "ui_switch",
+        "z": "9165fb27074a613c",
+        "name": "Autovalve",
+        "label": "switch",
+        "tooltip": "",
+        "group": "8b82dc2997a71777",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 360,
+        "y": 1240,
+        "wires": [
+            [
+                "b980feec714ee2b4",
+                "aff066b050c05fe9"
+            ]
+        ]
+    },
+    {
+        "id": "28c000b3cae1ac23",
+        "type": "exec",
+        "z": "9165fb27074a613c",
+        "command": "cd python-labjack-daq && python autovalve.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1020,
+        "y": 1240,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "42917db9bb72cc25",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 1220,
+        "wires": [
+            [
+                "44a9aa61fe43dfc5"
+            ]
+        ]
+    },
+    {
+        "id": "81d6227bad2aedd1",
+        "type": "status",
+        "z": "9165fb27074a613c",
+        "name": "Autovalve status",
+        "scope": [
+            "28c000b3cae1ac23"
+        ],
+        "x": 360,
+        "y": 1320,
+        "wires": [
+            [
+                "065ed7faf1e10f77",
+                "1c1b9ce4157aa12f"
+            ]
+        ]
+    },
+    {
+        "id": "55d819e00fdde0ea",
+        "type": "inject",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 1260,
+        "wires": [
+            [
+                "44a9aa61fe43dfc5"
+            ]
+        ]
+    },
+    {
+        "id": "b980feec714ee2b4",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 1240,
+        "wires": [
+            [
+                "28c000b3cae1ac23"
+            ]
+        ]
+    },
+    {
+        "id": "aff066b050c05fe9",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 1280,
+        "wires": [
+            [
+                "065ed7faf1e10f77"
+            ]
+        ]
+    },
+    {
+        "id": "cfe88a4042e1c403",
+        "type": "exec",
+        "z": "9165fb27074a613c",
+        "command": "kill -9 ",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 890,
+        "y": 1320,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "065ed7faf1e10f77",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "Get PID for kill",
+        "func": "// Check if msg.payload is not false\nif (msg.payload !== false) {\n    // Store the value of msg.status.text.split(':')[1] in context.global.pid\n    var statusText = msg.status.text || '';\n    var splitText = statusText.split(':');\n    \n    if (splitText.length > 1) {\n        // Extract PID from the split text\n        var pid_buffer = splitText[1].trim();\n        \n        // Set context.global.pid to the extracted PID\n        context.global.pid_buffer = pid_buffer;\n    } else {\n        node.warn('Invalid status text format');\n    }\n}\n\n// Otherwise, if msg.payload is false, set msg.payload to the PID\nif (msg.payload == false) {\nmsg.payload = context.global.pid_buffer;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 1320,
+        "wires": [
+            [
+                "cfe88a4042e1c403"
+            ]
+        ]
+    },
+    {
+        "id": "afe08076ef73941d",
+        "type": "status",
+        "z": "9165fb27074a613c",
+        "name": "Switch status",
+        "scope": [
+            "44a9aa61fe43dfc5"
+        ],
+        "x": 250,
+        "y": 1480,
+        "wires": [
+            [
+                "9ac75fc1a69af454"
+            ]
+        ]
+    },
+    {
+        "id": "9ac75fc1a69af454",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "Print switch status",
+        "func": "// Store the value of msg.status.text.split(':')[1] in context.global.pid\nvar statusText = msg.status.text || '';\nmsg.payload = statusText;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 1480,
+        "wires": [
+            [
+                "97879b4e990367c9"
+            ]
+        ]
+    },
+    {
+        "id": "46db702168d0ae16",
+        "type": "tobool",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "showState": false,
+        "filter": false,
+        "x": 770,
+        "y": 1480,
+        "wires": [
+            [
+                "7402eca968ab87d6",
+                "7b456aaeb949a85c"
+            ]
+        ]
+    },
+    {
+        "id": "97879b4e990367c9",
+        "type": "change",
+        "z": "9165fb27074a613c",
+        "name": "Autoswitch",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Autoswitch",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 1480,
+        "wires": [
+            [
+                "46db702168d0ae16"
+            ]
+        ]
+    },
+    {
+        "id": "1c1b9ce4157aa12f",
+        "type": "function",
+        "z": "9165fb27074a613c",
+        "name": "Check fault",
+        "func": "// Store the value of msg.status.text.split(':')[1] in context.global.pid\nvar statusColor = msg.status.fill || '';\n\nmsg.payload = statusColor;\nif (statusColor == 'blue'){\n    // Set the message payload to false\n    msg.payload = 'false'\n}\nif (statusColor == 'red'){\n    // Set the message payload to true\n    msg.payload = 'true'\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 1440,
+        "wires": [
+            [
+                "6c65b693caf00691"
+            ]
+        ]
+    },
+    {
+        "id": "6c96e3a0e5ce76e1",
+        "type": "tobool",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "showState": false,
+        "filter": false,
+        "x": 1090,
+        "y": 1440,
+        "wires": [
+            [
+                "dc35d74c8fe14301"
+            ]
+        ]
+    },
+    {
+        "id": "6c65b693caf00691",
+        "type": "change",
+        "z": "9165fb27074a613c",
+        "name": "Autoon",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Autoon",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 1440,
+        "wires": [
+            [
+                "6c96e3a0e5ce76e1"
+            ]
+        ]
+    },
+    {
+        "id": "dc35d74c8fe14301",
+        "type": "and",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "topic": "",
+        "property": "payload",
+        "minData": "2",
+        "filter": false,
+        "x": 1230,
+        "y": 1460,
+        "wires": [
+            [
+                "dae466118608fc18"
+            ]
+        ]
+    },
+    {
+        "id": "7402eca968ab87d6",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 910,
+        "y": 1520,
+        "wires": [
+            [
+                "69db507b80fde8f7"
+            ]
+        ]
+    },
+    {
+        "id": "7b456aaeb949a85c",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1050,
+        "y": 1480,
+        "wires": [
+            [
+                "dc35d74c8fe14301"
+            ]
+        ]
+    },
+    {
+        "id": "69db507b80fde8f7",
+        "type": "delay",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1040,
+        "y": 1520,
+        "wires": [
+            [
+                "dc35d74c8fe14301"
+            ]
+        ]
+    },
+    {
+        "id": "c0bf65a1c7f2a7dd",
+        "type": "link out",
+        "z": "9165fb27074a613c",
+        "name": "Restart Buffer",
+        "mode": "link",
+        "links": [
+            "52ced69b2c7b6b78",
+            "6d17daf63b802810",
+            "21593eb3d9a2c1c4"
+        ],
+        "x": 1435,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "dae466118608fc18",
+        "type": "switch",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1350,
+        "y": 1460,
+        "wires": [
+            [
+                "c0bf65a1c7f2a7dd"
+            ]
+        ]
+    },
+    {
+        "id": "6d17daf63b802810",
+        "type": "link in",
+        "z": "9165fb27074a613c",
+        "name": "link in 3",
+        "links": [
+            "c0bf65a1c7f2a7dd"
+        ],
+        "x": 65,
+        "y": 1140,
+        "wires": [
+            [
+                "ad9c0e970da3ccd0",
+                "62be4ff2b0a855d9"
+            ]
+        ]
+    },
+    {
+        "id": "ad9c0e970da3ccd0",
+        "type": "not",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "property": "payload",
+        "showState": false,
+        "filter": false,
+        "x": 190,
+        "y": 1140,
+        "wires": [
+            [
+                "44a9aa61fe43dfc5"
+            ]
+        ]
+    },
+    {
+        "id": "62be4ff2b0a855d9",
+        "type": "delay",
+        "z": "9165fb27074a613c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 180,
+        "y": 1180,
+        "wires": [
+            [
+                "44a9aa61fe43dfc5"
+            ]
+        ]
+    },
+    {
+        "id": "ae48e924b090d56c",
+        "type": "comment",
+        "z": "9165fb27074a613c",
+        "name": "Check whether the switch state matches the program state",
+        "info": "",
+        "x": 750,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "eddb12b44e54aa30",
+        "type": "comment",
+        "z": "9165fb27074a613c",
+        "name": "Run the python buffer program",
+        "info": "",
+        "x": 420,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "3f84523399efe808",
+        "type": "serial in",
+        "z": "f694214ce746579e",
+        "name": "DHT22",
+        "serial": "c4dfa7d8da268665",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "6278e76b82c20b67"
+            ]
+        ]
+    },
+    {
+        "id": "6278e76b82c20b67",
+        "type": "csv",
+        "z": "f694214ce746579e",
+        "name": "Parse Serial Output",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "Humidity 1, Temperature 1, Humidity 2, Temperature 2",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 350,
+        "y": 140,
+        "wires": [
+            [
+                "808feeed75f23639"
+            ]
+        ]
+    },
+    {
+        "id": "808feeed75f23639",
+        "type": "link out",
+        "z": "f694214ce746579e",
+        "name": "Serial COM (Out)",
+        "mode": "link",
+        "links": [
+            "347a31098b867e46"
+        ],
+        "x": 515,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "48c63a7e827d4f90",
+        "type": "comment",
+        "z": "f694214ce746579e",
+        "name": "Connect to Arduino",
+        "info": "",
+        "x": 190,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "21356d58c9141f01",
+        "type": "comment",
+        "z": "f694214ce746579e",
+        "name": "Read Labjack Data",
+        "info": "",
+        "x": 190,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4a14da769fbee218",
+        "type": "file in",
+        "z": "f694214ce746579e",
+        "name": "LJ Stream",
+        "filename": "/home/pi/python-labjack-daq/DATA/LJdata.csv",
+        "filenameType": "str",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 370,
+        "y": 360,
+        "wires": [
+            [
+                "4c75fb6f6aaa33e1"
+            ]
+        ]
+    },
+    {
+        "id": "4c75fb6f6aaa33e1",
+        "type": "csv",
+        "z": "f694214ce746579e",
+        "name": "Parse Labjack Data",
+        "sep": ";",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 570,
+        "y": 360,
+        "wires": [
+            [
+                "4fd541009e0bda7c"
+            ]
+        ]
+    },
+    {
+        "id": "373e3993eddf87a0",
+        "type": "link in",
+        "z": "f694214ce746579e",
+        "name": "Timestamp (In)",
+        "links": [
+            "3aa41ea9d9aea29c"
+        ],
+        "x": 225,
+        "y": 360,
+        "wires": [
+            [
+                "4a14da769fbee218"
+            ]
+        ]
+    },
+    {
+        "id": "4373265ca9675269",
+        "type": "link out",
+        "z": "f694214ce746579e",
+        "name": "Labjack (Out)",
+        "mode": "link",
+        "links": [
+            "e6e49aff946c8ddd"
+        ],
+        "x": 1255,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b5ad21e164cf938e",
+        "type": "function",
+        "z": "f694214ce746579e",
+        "name": "Exponentiate Pressure Value",
+        "func": "msg.payload.FRG1 = 10**(msg.payload.FRG1)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 360,
+        "wires": [
+            [
+                "4373265ca9675269"
+            ]
+        ]
+    },
+    {
+        "id": "4fd541009e0bda7c",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "Check if the reading is valid",
+        "property": "msg.payload.FRG1",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "-10",
+                "vt": "num",
+                "v2": "4",
+                "v2t": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 840,
+        "y": 360,
+        "wires": [
+            [
+                "b5ad21e164cf938e"
+            ]
+        ]
+    },
+    {
         "id": "b7318db0ca218e23",
         "type": "rpi-gpio out",
         "z": "622b7c2ad32f0fe6",
@@ -487,7 +2381,7 @@
         "freq": "",
         "out": "out",
         "bcm": true,
-        "x": 660,
+        "x": 680,
         "y": 360,
         "wires": []
     },
@@ -531,7 +2425,7 @@
         "width": "3",
         "height": "2",
         "passthru": false,
-        "label": "Deactivate",
+        "label": "Enable",
         "tooltip": "",
         "color": "",
         "bgcolor": "green",
@@ -560,7 +2454,7 @@
         "width": "3",
         "height": "2",
         "passthru": false,
-        "label": "Activate",
+        "label": "Disable",
         "tooltip": "",
         "color": "",
         "bgcolor": "red",
@@ -589,10 +2483,10 @@
         "width": "3",
         "height": "2",
         "passthru": true,
-        "label": "Deactivate",
+        "label": "Close Valve",
         "tooltip": "",
         "color": "",
-        "bgcolor": "green",
+        "bgcolor": "red",
         "className": "",
         "icon": "",
         "payload": "false",
@@ -618,10 +2512,10 @@
         "width": "3",
         "height": "2",
         "passthru": true,
-        "label": "Activate",
+        "label": "Open Valve",
         "tooltip": "",
         "color": "",
-        "bgcolor": "red",
+        "bgcolor": "green",
         "className": "",
         "icon": "",
         "payload": "true",
@@ -633,7 +2527,8 @@
         "wires": [
             [
                 "8c09e51e91d32426",
-                "702dff2e8c43a3d0"
+                "702dff2e8c43a3d0",
+                "8dba6138e0405847"
             ]
         ]
     },
@@ -647,7 +2542,7 @@
         "width": "3",
         "height": "2",
         "passthru": false,
-        "label": "Deactivate",
+        "label": "Open Valve",
         "tooltip": "",
         "color": "",
         "bgcolor": "green",
@@ -676,7 +2571,7 @@
         "width": "3",
         "height": "2",
         "passthru": false,
-        "label": "Activate",
+        "label": "Close Valve",
         "tooltip": "",
         "color": "",
         "bgcolor": "red",
@@ -705,7 +2600,7 @@
         "width": "3",
         "height": "2",
         "passthru": false,
-        "label": "Deactivate",
+        "label": "Open Valve",
         "tooltip": "",
         "color": "",
         "bgcolor": "green",
@@ -734,7 +2629,7 @@
         "width": "3",
         "height": "2",
         "passthru": false,
-        "label": "Activate",
+        "label": "Close Valve",
         "tooltip": "",
         "color": "",
         "bgcolor": "red",
@@ -925,22 +2820,6 @@
         "wires": []
     },
     {
-        "id": "c78e55c86e55e5b5",
-        "type": "link in",
-        "z": "622b7c2ad32f0fe6",
-        "name": "Autoclose (In)",
-        "links": [
-            "ac41a1e0cb3958c6"
-        ],
-        "x": 185,
-        "y": 420,
-        "wires": [
-            [
-                "5aa547436835f96c"
-            ]
-        ]
-    },
-    {
         "id": "02e5cf0e5d504f88",
         "type": "link out",
         "z": "622b7c2ad32f0fe6",
@@ -948,9 +2827,13 @@
         "mode": "link",
         "links": [
             "58d869ed67de6b51",
-            "4fa52675725d76d1"
+            "4fa52675725d76d1",
+            "cad76add85498c58",
+            "48cfceccd5981fb0",
+            "8fe8412c76e72896",
+            "aaed0ce160d25dbd"
         ],
-        "x": 885,
+        "x": 895,
         "y": 300,
         "wires": []
     },
@@ -1007,22 +2890,6 @@
         ]
     },
     {
-        "id": "044f64978443c20b",
-        "type": "link in",
-        "z": "622b7c2ad32f0fe6",
-        "name": "Autovalve",
-        "links": [
-            "3f9d98dde8797238"
-        ],
-        "x": 185,
-        "y": 380,
-        "wires": [
-            [
-                "746daebd871c31f3"
-            ]
-        ]
-    },
-    {
         "id": "cca3e9738ba4cde2",
         "type": "change",
         "z": "622b7c2ad32f0fe6",
@@ -1068,10 +2935,10 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
+        "payload": "init",
+        "payloadType": "str",
         "x": 140,
-        "y": 460,
+        "y": 420,
         "wires": [
             [
                 "5aa547436835f96c"
@@ -1079,408 +2946,12 @@
         ]
     },
     {
-        "id": "3f84523399efe808",
-        "type": "serial in",
-        "z": "f694214ce746579e",
-        "name": "DHT22",
-        "serial": "c4dfa7d8da268665",
-        "x": 150,
-        "y": 140,
-        "wires": [
-            [
-                "6278e76b82c20b67"
-            ]
-        ]
-    },
-    {
-        "id": "6278e76b82c20b67",
-        "type": "csv",
-        "z": "f694214ce746579e",
-        "name": "Parse Serial Output",
-        "sep": ",",
-        "hdrin": "",
-        "hdrout": "none",
-        "multi": "one",
-        "ret": "\\n",
-        "temp": "Humidity 1, Temperature 1, Humidity 2, Temperature 2",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": "",
-        "include_null_values": "",
-        "x": 350,
-        "y": 140,
-        "wires": [
-            [
-                "808feeed75f23639"
-            ]
-        ]
-    },
-    {
-        "id": "808feeed75f23639",
-        "type": "link out",
-        "z": "f694214ce746579e",
-        "name": "Serial COM (Out)",
-        "mode": "link",
-        "links": [
-            "347a31098b867e46"
-        ],
-        "x": 515,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "48c63a7e827d4f90",
-        "type": "comment",
-        "z": "f694214ce746579e",
-        "name": "Connect to Arduino",
-        "info": "",
-        "x": 190,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "21356d58c9141f01",
-        "type": "comment",
-        "z": "f694214ce746579e",
-        "name": "Read Labjack Data",
-        "info": "",
-        "x": 190,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "4a14da769fbee218",
-        "type": "file in",
-        "z": "f694214ce746579e",
-        "name": "LJ Stream",
-        "filename": "/home/pi/python-labjack-daq/DATA/LJdata.csv",
-        "filenameType": "str",
-        "format": "lines",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 370,
-        "y": 260,
-        "wires": [
-            [
-                "4c75fb6f6aaa33e1"
-            ]
-        ]
-    },
-    {
-        "id": "4c75fb6f6aaa33e1",
-        "type": "csv",
-        "z": "f694214ce746579e",
-        "name": "Parse Labjack Data",
-        "sep": ";",
-        "hdrin": true,
-        "hdrout": "none",
-        "multi": "one",
-        "ret": "\\n",
-        "temp": "",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": "",
-        "include_null_values": "",
-        "x": 570,
-        "y": 260,
-        "wires": [
-            [
-                "b5ad21e164cf938e",
-                "b4bfa975d8c91afc",
-                "dc0b370529a63d8f",
-                "f6a0959ec7d97749",
-                "5a2761e738de8d22",
-                "c7b9796f9858be18",
-                "2a366eca7591a8e8",
-                "cfd08b58d9cc9b2e"
-            ]
-        ]
-    },
-    {
-        "id": "373e3993eddf87a0",
-        "type": "link in",
-        "z": "f694214ce746579e",
-        "name": "Timestamp (In)",
-        "links": [
-            "3aa41ea9d9aea29c"
-        ],
-        "x": 225,
-        "y": 260,
-        "wires": [
-            [
-                "4a14da769fbee218"
-            ]
-        ]
-    },
-    {
-        "id": "4373265ca9675269",
-        "type": "link out",
-        "z": "f694214ce746579e",
-        "name": "Labjack (Out)",
-        "mode": "link",
-        "links": [
-            "e6e49aff946c8ddd"
-        ],
-        "x": 1195,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "b5ad21e164cf938e",
-        "type": "function",
-        "z": "f694214ce746579e",
-        "name": "Exponentiate Pressure Value",
-        "func": "msg.payload.FRG1 = 10**(msg.payload.FRG1)\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 940,
-        "y": 140,
-        "wires": [
-            [
-                "4373265ca9675269"
-            ]
-        ]
-    },
-    {
-        "id": "cfd08b58d9cc9b2e",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "Overfill",
-        "property": "payload.RES7",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "9.5",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 880,
-        "y": 260,
-        "wires": [
-            [
-                "9d56b34fcb6880b4"
-            ]
-        ]
-    },
-    {
-        "id": "b4bfa975d8c91afc",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "6/6",
-        "property": "payload.RES1",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "9.4",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 870,
-        "y": 300,
-        "wires": [
-            [
-                "4d11429e12a86166"
-            ]
-        ]
-    },
-    {
-        "id": "dc0b370529a63d8f",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "5/6",
-        "property": "payload.RES2",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "9.2",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 870,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "2a366eca7591a8e8",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "4/6",
-        "property": "payload.RES3",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "9.2",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 870,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f6a0959ec7d97749",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "3/6",
-        "property": "payload.RES4",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "9.3",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 870,
-        "y": 420,
-        "wires": [
-            [
-                "a55633a382947bd7"
-            ]
-        ]
-    },
-    {
-        "id": "5a2761e738de8d22",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "2/6",
-        "property": "payload.RES5",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "9.4",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 870,
-        "y": 460,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c7b9796f9858be18",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "1/6",
-        "property": "payload.RES6",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "lt",
-                "v": "9",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 870,
-        "y": 500,
-        "wires": [
-            [
-                "4c2b7b725c0f115e"
-            ]
-        ]
-    },
-    {
-        "id": "2b6dfc3386a51193",
-        "type": "change",
-        "z": "f694214ce746579e",
-        "name": "Close Valve",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1050,
-        "y": 780,
-        "wires": [
-            [
-                "ac41a1e0cb3958c6"
-            ]
-        ]
-    },
-    {
-        "id": "ac41a1e0cb3958c6",
-        "type": "link out",
-        "z": "f694214ce746579e",
-        "name": "Close Valve",
-        "mode": "link",
-        "links": [
-            "c78e55c86e55e5b5"
-        ],
-        "x": 1165,
-        "y": 780,
-        "wires": []
-    },
-    {
-        "id": "58d869ed67de6b51",
-        "type": "link in",
-        "z": "f694214ce746579e",
-        "name": "Autoclose (In)",
-        "links": [
-            "02e5cf0e5d504f88"
-        ],
-        "x": 215,
-        "y": 780,
-        "wires": [
-            [
-                "95e4f11124723425",
-                "04c586c9eb936c64",
-                "d2d1e31a23170deb"
-            ]
-        ]
-    },
-    {
-        "id": "bcd85ad8ed8ac8d8",
+        "id": "8dba6138e0405847",
         "type": "delay",
-        "z": "f694214ce746579e",
-        "name": "Autoclose After 5 Minutes",
+        "z": "622b7c2ad32f0fe6",
+        "name": "Autoclose",
         "pauseType": "delay",
-        "timeout": "5",
+        "timeout": "8",
         "timeoutUnits": "minutes",
         "rate": "1",
         "nbRateUnits": "1",
@@ -1491,1298 +2962,12 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 750,
-        "y": 780,
-        "wires": [
-            [
-                "2b6dfc3386a51193"
-            ]
-        ]
-    },
-    {
-        "id": "9d56b34fcb6880b4",
-        "type": "change",
-        "z": "f694214ce746579e",
-        "name": "Overfill",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "overfill",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1060,
-        "y": 260,
-        "wires": [
-            [
-                "5eedcb278b79055d"
-            ]
-        ]
-    },
-    {
-        "id": "4d11429e12a86166",
-        "type": "change",
-        "z": "f694214ce746579e",
-        "name": "High-power full",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "high-power-full",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1080,
-        "y": 300,
-        "wires": [
-            [
-                "bc80df56c0ef0ada"
-            ]
-        ]
-    },
-    {
-        "id": "a55633a382947bd7",
-        "type": "change",
-        "z": "f694214ce746579e",
-        "name": "Low-power full",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1080,
-        "y": 420,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4c2b7b725c0f115e",
-        "type": "change",
-        "z": "f694214ce746579e",
-        "name": "Low-power empty",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1090,
-        "y": 500,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5eedcb278b79055d",
-        "type": "link out",
-        "z": "f694214ce746579e",
-        "name": "Overfill",
-        "mode": "link",
-        "links": [
-            "70ce6925fe54fbda"
-        ],
-        "x": 1245,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "70ce6925fe54fbda",
-        "type": "link in",
-        "z": "f694214ce746579e",
-        "name": "Overfill",
-        "links": [
-            "5eedcb278b79055d"
-        ],
-        "x": 215,
-        "y": 700,
-        "wires": [
-            [
-                "04c586c9eb936c64"
-            ]
-        ]
-    },
-    {
-        "id": "04c586c9eb936c64",
-        "type": "and",
-        "z": "f694214ce746579e",
-        "name": "Overfill",
-        "topic": "",
-        "property": "payload",
-        "minData": "2",
-        "filter": false,
-        "x": 400,
-        "y": 700,
-        "wires": [
-            [
-                "7100de04532a30ef"
-            ]
-        ]
-    },
-    {
-        "id": "95e4f11124723425",
-        "type": "and",
-        "z": "f694214ce746579e",
-        "name": "Autoclose",
-        "topic": "",
-        "property": "payload",
-        "minData": "1",
-        "filter": false,
-        "x": 400,
-        "y": 780,
-        "wires": [
-            [
-                "df6463b1e2665233"
-            ]
-        ]
-    },
-    {
-        "id": "bc80df56c0ef0ada",
-        "type": "link out",
-        "z": "f694214ce746579e",
-        "name": "High-power full",
-        "mode": "link",
-        "links": [
-            "da1f7018478d13c5"
-        ],
-        "x": 1245,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "da1f7018478d13c5",
-        "type": "link in",
-        "z": "f694214ce746579e",
-        "name": "High-power full",
-        "links": [
-            "bc80df56c0ef0ada"
-        ],
-        "x": 215,
-        "y": 860,
-        "wires": [
-            [
-                "d2d1e31a23170deb"
-            ]
-        ]
-    },
-    {
-        "id": "d2d1e31a23170deb",
-        "type": "and",
-        "z": "f694214ce746579e",
-        "name": "High-power full",
-        "topic": "",
-        "property": "payload",
-        "minData": "2",
-        "filter": false,
-        "x": 420,
-        "y": 860,
-        "wires": [
-            [
-                "90bc7bc34e63d56c"
-            ]
-        ]
-    },
-    {
-        "id": "df6463b1e2665233",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 570,
-        "y": 780,
-        "wires": [
-            [
-                "bcd85ad8ed8ac8d8"
-            ]
-        ]
-    },
-    {
-        "id": "7100de04532a30ef",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 570,
-        "y": 700,
-        "wires": [
-            [
-                "2b6dfc3386a51193"
-            ]
-        ]
-    },
-    {
-        "id": "90bc7bc34e63d56c",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 570,
-        "y": 860,
-        "wires": [
-            [
-                "2b6dfc3386a51193"
-            ]
-        ]
-    },
-    {
-        "id": "1e0969457bdf632a",
-        "type": "comment",
-        "z": "f694214ce746579e",
-        "name": "Automatically Close the LN2 Valve",
-        "info": "",
-        "x": 240,
-        "y": 640,
-        "wires": []
-    },
-    {
-        "id": "9d94bf4e118b39ae",
-        "type": "comment",
-        "z": "f694214ce746579e",
-        "name": "Automatically Open the LN2 Valve",
-        "info": "",
-        "x": 240,
-        "y": 980,
-        "wires": []
-    },
-    {
-        "id": "eefe6103d9c17bc7",
-        "type": "file in",
-        "z": "f694214ce746579e",
-        "name": "LJ Buffer",
-        "filename": "/home/pi/python-labjack-daq/DATA/LJanalysis.csv",
-        "filenameType": "str",
-        "format": "lines",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 360,
-        "y": 1040,
-        "wires": [
-            [
-                "5d8ea36837bfe132"
-            ]
-        ]
-    },
-    {
-        "id": "5d8ea36837bfe132",
-        "type": "csv",
-        "z": "f694214ce746579e",
-        "name": "Parse Labjack Data",
-        "sep": ";",
-        "hdrin": true,
-        "hdrout": "none",
-        "multi": "one",
-        "ret": "\\n",
-        "temp": "",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": "",
-        "include_null_values": "",
-        "x": 550,
-        "y": 1040,
-        "wires": [
-            [
-                "4886303171d0548a",
-                "c5e7a8b84efe639d",
-                "7a0066da2ced760b"
-            ]
-        ]
-    },
-    {
-        "id": "1c1ba824327aad3a",
-        "type": "link in",
-        "z": "f694214ce746579e",
-        "name": "Timestamp (In)",
-        "links": [
-            "3aa41ea9d9aea29c"
-        ],
-        "x": 225,
-        "y": 1040,
-        "wires": [
-            [
-                "eefe6103d9c17bc7"
-            ]
-        ]
-    },
-    {
-        "id": "7a0066da2ced760b",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "",
-        "property": "payload.dRES1",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "lt",
-                "v": "-0.01",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 770,
-        "y": 1040,
-        "wires": [
-            [
-                "b01777e991767e54"
-            ]
-        ]
-    },
-    {
-        "id": "c5e7a8b84efe639d",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "",
-        "property": "payload.dRES2",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "lt",
-                "v": "-0.01",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 770,
-        "y": 1080,
-        "wires": [
-            [
-                "eb58cbb2213b1f09"
-            ]
-        ]
-    },
-    {
-        "id": "4886303171d0548a",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "",
-        "property": "payload.dRES3",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "lt",
-                "v": "-0.01",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 770,
-        "y": 1120,
-        "wires": [
-            [
-                "662c29be5f4f6cb6"
-            ]
-        ]
-    },
-    {
-        "id": "b01777e991767e54",
-        "type": "change",
-        "z": "f694214ce746579e",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "transition1",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 940,
-        "y": 1040,
-        "wires": [
-            [
-                "40d6e324e766206d"
-            ]
-        ]
-    },
-    {
-        "id": "eb58cbb2213b1f09",
-        "type": "change",
-        "z": "f694214ce746579e",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "transition2",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 940,
-        "y": 1080,
-        "wires": [
-            [
-                "40d6e324e766206d"
-            ]
-        ]
-    },
-    {
-        "id": "662c29be5f4f6cb6",
-        "type": "change",
-        "z": "f694214ce746579e",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "transition3",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 940,
-        "y": 1120,
-        "wires": [
-            [
-                "40d6e324e766206d"
-            ]
-        ]
-    },
-    {
-        "id": "40d6e324e766206d",
-        "type": "and",
-        "z": "f694214ce746579e",
-        "name": "Autofill",
-        "topic": "",
-        "property": "payload",
-        "minData": "5",
-        "filter": false,
-        "x": 1150,
-        "y": 1040,
-        "wires": [
-            [
-                "08d5ac282a153cbe"
-            ]
-        ]
-    },
-    {
-        "id": "3f9d98dde8797238",
-        "type": "link out",
-        "z": "f694214ce746579e",
-        "name": "Autovalve (Out)",
-        "mode": "link",
-        "links": [
-            "044f64978443c20b"
-        ],
-        "x": 1375,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "08d5ac282a153cbe",
-        "type": "switch",
-        "z": "f694214ce746579e",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 1290,
-        "y": 1040,
-        "wires": [
-            [
-                "3f9d98dde8797238"
-            ]
-        ]
-    },
-    {
-        "id": "518c0f27a7b1101d",
-        "type": "link in",
-        "z": "f694214ce746579e",
-        "name": "Autovalve Status (In)",
-        "links": [
-            "6b6c360175292616"
-        ],
-        "x": 1005,
-        "y": 1000,
-        "wires": [
-            [
-                "40d6e324e766206d"
-            ]
-        ]
-    },
-    {
-        "id": "4fa52675725d76d1",
-        "type": "link in",
-        "z": "f694214ce746579e",
-        "name": "link in 1",
-        "links": [
-            "02e5cf0e5d504f88"
-        ],
-        "x": 875,
-        "y": 960,
-        "wires": [
-            [
-                "f6c689034c84a6a9"
-            ]
-        ]
-    },
-    {
-        "id": "f6c689034c84a6a9",
-        "type": "not",
-        "z": "f694214ce746579e",
-        "name": "",
-        "property": "payload",
-        "showState": false,
-        "filter": false,
-        "x": 970,
-        "y": 960,
-        "wires": [
-            [
-                "40d6e324e766206d"
-            ]
-        ]
-    },
-    {
-        "id": "cdbd22fc72e86676",
-        "type": "ui_switch",
-        "z": "9165fb27074a613c",
-        "name": "Stream",
-        "label": "switch",
-        "tooltip": "",
-        "group": "57094b63e06db9a5",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
-        "x": 360,
-        "y": 140,
-        "wires": [
-            [
-                "530102d7c00152ef",
-                "cd658b52eb32bf76"
-            ]
-        ]
-    },
-    {
-        "id": "9ac52433c1e7ba6b",
-        "type": "exec",
-        "z": "9165fb27074a613c",
-        "command": "cd python-labjack-daq && python readLJ.py",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 1010,
-        "y": 140,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "edc8e2380994956b",
-        "type": "inject",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "x": 190,
-        "y": 120,
-        "wires": [
-            [
-                "cdbd22fc72e86676"
-            ]
-        ]
-    },
-    {
-        "id": "4aee3f4f6f063250",
-        "type": "status",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "scope": [
-            "9ac52433c1e7ba6b"
-        ],
-        "x": 500,
-        "y": 220,
-        "wires": [
-            [
-                "78c58af54bc0b333"
-            ]
-        ]
-    },
-    {
-        "id": "5365b230e4407b76",
-        "type": "inject",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "false",
-        "payloadType": "bool",
-        "x": 190,
-        "y": 160,
-        "wires": [
-            [
-                "cdbd22fc72e86676"
-            ]
-        ]
-    },
-    {
-        "id": "530102d7c00152ef",
-        "type": "switch",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 510,
-        "y": 140,
-        "wires": [
-            [
-                "9ac52433c1e7ba6b"
-            ]
-        ]
-    },
-    {
-        "id": "cd658b52eb32bf76",
-        "type": "switch",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 510,
-        "y": 180,
-        "wires": [
-            [
-                "78c58af54bc0b333"
-            ]
-        ]
-    },
-    {
-        "id": "f6278869d3517154",
-        "type": "exec",
-        "z": "9165fb27074a613c",
-        "command": "kill -9 ",
-        "addpay": "payload",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 890,
-        "y": 220,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "78c58af54bc0b333",
-        "type": "function",
-        "z": "9165fb27074a613c",
-        "name": "function 2",
-        "func": "// Check if msg.payload is not false\nif (msg.payload !== false) {\n    // Store the value of msg.status.text.split(':')[1] in context.global.pid\n    var statusText = msg.status.text || '';\n    var splitText = statusText.split(':');\n    \n    if (splitText.length > 1) {\n        // Extract PID from the split text\n        var pid_data = splitText[1].trim();\n        \n        // Set context.global.pid to the extracted PID\n        context.global.pid_data = pid_data;\n    } else {\n        node.warn('Invalid status text format');\n    }\n}\n\n// Otherwise, if msg.payload is false, set msg.payload to the PID\nif (msg.payload == false) {\nmsg.payload = context.global.pid_data;\n}\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 680,
-        "y": 220,
-        "wires": [
-            [
-                "f6278869d3517154"
-            ]
-        ]
-    },
-    {
-        "id": "7b863f9b790d20d0",
-        "type": "ui_switch",
-        "z": "9165fb27074a613c",
-        "name": "Buffer",
-        "label": "switch",
-        "tooltip": "",
-        "group": "676648969881c30a",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
-        "x": 350,
+        "x": 140,
         "y": 380,
         "wires": [
             [
-                "14c17b626523c8b8",
-                "b5453ff10689c950"
+                "5aa547436835f96c"
             ]
         ]
-    },
-    {
-        "id": "e1b09ff19497bbf8",
-        "type": "exec",
-        "z": "9165fb27074a613c",
-        "command": "cd python-labjack-daq && python bufferdata.py",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 1020,
-        "y": 380,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "e4c696f29293cc33",
-        "type": "inject",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "x": 190,
-        "y": 360,
-        "wires": [
-            [
-                "7b863f9b790d20d0"
-            ]
-        ]
-    },
-    {
-        "id": "6f8522dd59dc454a",
-        "type": "status",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "scope": [
-            "e1b09ff19497bbf8"
-        ],
-        "x": 500,
-        "y": 460,
-        "wires": [
-            [
-                "8273b19b43fcade6"
-            ]
-        ]
-    },
-    {
-        "id": "42b6c00314396a28",
-        "type": "inject",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "false",
-        "payloadType": "bool",
-        "x": 190,
-        "y": 400,
-        "wires": [
-            [
-                "7b863f9b790d20d0"
-            ]
-        ]
-    },
-    {
-        "id": "14c17b626523c8b8",
-        "type": "switch",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 510,
-        "y": 380,
-        "wires": [
-            [
-                "e1b09ff19497bbf8"
-            ]
-        ]
-    },
-    {
-        "id": "b5453ff10689c950",
-        "type": "switch",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 510,
-        "y": 420,
-        "wires": [
-            [
-                "8273b19b43fcade6"
-            ]
-        ]
-    },
-    {
-        "id": "4a8ab8531198c152",
-        "type": "exec",
-        "z": "9165fb27074a613c",
-        "command": "kill -9 ",
-        "addpay": "payload",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 890,
-        "y": 460,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "8273b19b43fcade6",
-        "type": "function",
-        "z": "9165fb27074a613c",
-        "name": "function 3",
-        "func": "// Check if msg.payload is not false\nif (msg.payload !== false) {\n    // Store the value of msg.status.text.split(':')[1] in context.global.pid\n    var statusText = msg.status.text || '';\n    var splitText = statusText.split(':');\n    \n    if (splitText.length > 1) {\n        // Extract PID from the split text\n        var pid_buffer = splitText[1].trim();\n        \n        // Set context.global.pid to the extracted PID\n        context.global.pid_buffer = pid_buffer;\n    } else {\n        node.warn('Invalid status text format');\n    }\n}\n\n// Otherwise, if msg.payload is false, set msg.payload to the PID\nif (msg.payload == false) {\nmsg.payload = context.global.pid_buffer;\n}\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 680,
-        "y": 460,
-        "wires": [
-            [
-                "4a8ab8531198c152"
-            ]
-        ]
-    },
-    {
-        "id": "f7fee63ed8a93e4f",
-        "type": "status",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "scope": [
-            "8c5c60ebba6c1425"
-        ],
-        "x": 200,
-        "y": 720,
-        "wires": [
-            [
-                "048dcd5da9e3ee1a"
-            ]
-        ]
-    },
-    {
-        "id": "048dcd5da9e3ee1a",
-        "type": "function",
-        "z": "9165fb27074a613c",
-        "name": "Analysis status",
-        "func": "// Read the status of the GPIO state\nmsg.payload = msg.status.text || '';\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 720,
-        "wires": [
-            [
-                "93518abda89c0ca2"
-            ]
-        ]
-    },
-    {
-        "id": "efac3090207dcd37",
-        "type": "change",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "autofill",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 650,
-        "y": 720,
-        "wires": [
-            [
-                "6b6c360175292616"
-            ]
-        ]
-    },
-    {
-        "id": "8c5c60ebba6c1425",
-        "type": "ui_switch",
-        "z": "9165fb27074a613c",
-        "name": "Autofill",
-        "label": "switch",
-        "tooltip": "",
-        "group": "ab3c663ba053a7f7",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
-        "x": 350,
-        "y": 640,
-        "wires": [
-            [
-                "a8b483217ab6de57"
-            ]
-        ]
-    },
-    {
-        "id": "62b29ba3d7112ee5",
-        "type": "inject",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "x": 190,
-        "y": 620,
-        "wires": [
-            [
-                "8c5c60ebba6c1425"
-            ]
-        ]
-    },
-    {
-        "id": "31092d68bb3a4306",
-        "type": "inject",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "false",
-        "payloadType": "bool",
-        "x": 190,
-        "y": 660,
-        "wires": [
-            [
-                "8c5c60ebba6c1425"
-            ]
-        ]
-    },
-    {
-        "id": "a8b483217ab6de57",
-        "type": "debug",
-        "z": "9165fb27074a613c",
-        "name": "debug 1",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 520,
-        "y": 640,
-        "wires": []
-    },
-    {
-        "id": "93518abda89c0ca2",
-        "type": "tobool",
-        "z": "9165fb27074a613c",
-        "name": "",
-        "property": "payload",
-        "showState": false,
-        "filter": false,
-        "x": 510,
-        "y": 720,
-        "wires": [
-            [
-                "efac3090207dcd37"
-            ]
-        ]
-    },
-    {
-        "id": "6b6c360175292616",
-        "type": "link out",
-        "z": "9165fb27074a613c",
-        "name": "Autovalve Status (Out)",
-        "mode": "link",
-        "links": [
-            "518c0f27a7b1101d"
-        ],
-        "x": 765,
-        "y": 720,
-        "wires": []
     }
 ]
