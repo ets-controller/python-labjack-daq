@@ -7,13 +7,15 @@ import RPi.GPIO as GPIO
 
 DATA = 'DATA'
 buffName = 'LJanalysis.csv'
+strmName = 'LJdata.csv'
 
-closeSensor = ['RES7']
+closeSensor = ['RES7','RES1']
 openSensor = ['dRES1','dRES2']
 
 avgTime = 10*60 # seconds 
 
 buffr = os.path.join(DATA,buffName)
+strmr = os.path.join(DATA,strmName)
 
 valve = 19 #GPIO BCM pin for relay
 status = False # Default valve status 
@@ -26,6 +28,7 @@ ts = [0,0]
 closeVolt = 9.8
 closedVolt = 9.0
 openVolt = -1E-4
+fullVolt = 9.45
 
 waiting = True
 filling = False
@@ -55,23 +58,34 @@ if __name__ == '__main__':
         try:
             ts[0] = dt.datetime.utcnow().timestamp()
             try:
-                data = np.genfromtxt(buffr,comments='#',delimiter=';',names=True)
+                buff = np.genfromtxt(buffr,comments='#',delimiter=';',names=True)
+                strm = np.genfromtxt(strmr,comments='#',delimiter=';',names=True)
             except:
                 time.sleep(1)
                 continue
+            overfill = strm['%s'%closeSensor[0]][-1]
+            fill = strm['%s'%closeSensor[1]][-1]
+            
             if waiting:
                 if printstate == 1:
                     # waiting for fill cycle
                     printstate = 0
                 openCount = 0
-                if data['%s'%closeSensor[0]][-1] > closeVolt:
+                if overfill > closeVolt:
                     # this is weird, the overfill sensor is active before a fill cycle...
                     toggleValve()
                     closeCount = 0
                     waiting = False
                     closing = True
                     printstate = 1
-                if dt.datetime.utcnow().timestamp() - endFill > cdTime:
+                elif fill > fullVolt:
+                    # this is weird, the overfill sensor is active before a fill cycle...
+                    toggleValve()
+                    closeCount = 0
+                    waiting = False
+                    closing = True
+                    printstate = 1
+                elif dt.datetime.utcnow().timestamp() - endFill > cdTime:
                     for strname in openSensor:
                         if data['%s'%strname][-1] < openVolt:
                             openCount += 1
@@ -88,8 +102,14 @@ if __name__ == '__main__':
                     printstate = 0
                 startFill = dt.datetime.utcnow().timestamp()
                 closeCount = 0
-                if data['%s'%closeSensor[0]][-1] > closeVolt:
+                if overfill > closeVolt:
                     # overfill detected: close valve
+                    toggleValve()
+                    filling = False
+                    closing = True
+                    printstate = 1
+                elif fill > fullVolt:
+                    # Fill detected: close valve
                     toggleValve()
                     filling = False
                     closing = True
@@ -112,7 +132,7 @@ if __name__ == '__main__':
                     endFill = dt.datetime.utcnow().timestamp()
                 if closeCount == 5:
                     alarm()
-                if data['%s'%closeSensor[0]][-1] < closedVolt:
+                if overfill < closedVolt:
                     # LN sensor has dropped: the valve is closed
                     closing = False
                     waiting = True
