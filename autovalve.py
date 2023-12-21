@@ -63,8 +63,8 @@ if __name__ == '__main__':
             try:
                 buff,strm = loadData(buffr,strmr)
                 print(buff,strm)
-                overfill = strm['%s'%closeSensor[0]][-1]
-                fill = strm['%s'%closeSensor[1]][-1]
+                overfill = strm['%s'%closeSensor[0]]
+                fill = strm['%s'%closeSensor[1]]
             except:
                 print('cannot load data')
                 time.sleep(1)
@@ -89,7 +89,7 @@ if __name__ == '__main__':
                     closing = True
                 elif dt.datetime.utcnow().timestamp() - endFill > cdTime:
                     for strname in openSensor:
-                        if data['%s'%strname][-1] < openVolt:
+                        if buff['%s'%strname][-1] < openVolt:
                             openCount += 1
                             # openCount = %i'%openCount
                     if openCount == len(openSensor):
