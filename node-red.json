@@ -10,7 +10,7 @@
     {
         "id": "9165fb27074a613c",
         "type": "tab",
-        "label": "Python LabJack",
+        "label": "Python",
         "disabled": false,
         "info": "",
         "env": []
@@ -319,15 +319,16 @@
         "id": "3aa41ea9d9aea29c",
         "type": "link out",
         "z": "4901a0f32eb7f3bc",
-        "name": "Timestamp (Out)",
+        "name": "Timestamp (quick plots)",
         "mode": "link",
         "links": [
             "132079cdc6e501cd",
             "373e3993eddf87a0",
-            "1c1ba824327aad3a",
-            "2e088191f53732bb",
-            "28ef6f481cfa4dee",
-            "ff3b48c0eb0f7b11"
+            "6e0b80edce83a480",
+            "e2c8a89d54378df0",
+            "bca5b358b5a25cd7",
+            "71813ed9c4e71ae2",
+            "4bc85591cac5b42d"
         ],
         "x": 355,
         "y": 140,
@@ -440,7 +441,8 @@
         "z": "4901a0f32eb7f3bc",
         "name": "Labjack (In)",
         "links": [
-            "4373265ca9675269"
+            "4373265ca9675269",
+            "939bf1614dfd2b4e"
         ],
         "x": 245,
         "y": 560,
@@ -1611,7 +1613,7 @@
         "label": "switch",
         "tooltip": "",
         "group": "8b82dc2997a71777",
-        "order": 0,
+        "order": 1,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -2199,7 +2201,8 @@
         "y": 140,
         "wires": [
             [
-                "808feeed75f23639"
+                "808feeed75f23639",
+                "313f3ef324bbda0a"
             ]
         ]
     },
@@ -2212,7 +2215,7 @@
         "links": [
             "347a31098b867e46"
         ],
-        "x": 515,
+        "x": 735,
         "y": 140,
         "wires": []
     },
@@ -2233,7 +2236,7 @@
         "name": "Read Labjack Data",
         "info": "",
         "x": 190,
-        "y": 300,
+        "y": 420,
         "wires": []
     },
     {
@@ -2249,7 +2252,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 370,
-        "y": 360,
+        "y": 480,
         "wires": [
             [
                 "4c75fb6f6aaa33e1"
@@ -2272,7 +2275,7 @@
         "include_empty_strings": "",
         "include_null_values": "",
         "x": 570,
-        "y": 360,
+        "y": 480,
         "wires": [
             [
                 "4fd541009e0bda7c"
@@ -2288,7 +2291,7 @@
             "3aa41ea9d9aea29c"
         ],
         "x": 225,
-        "y": 360,
+        "y": 480,
         "wires": [
             [
                 "4a14da769fbee218"
@@ -2304,8 +2307,8 @@
         "links": [
             "e6e49aff946c8ddd"
         ],
-        "x": 1255,
-        "y": 360,
+        "x": 1315,
+        "y": 420,
         "wires": []
     },
     {
@@ -2320,8 +2323,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1100,
-        "y": 360,
+        "x": 1140,
+        "y": 420,
         "wires": [
             [
                 "4373265ca9675269"
@@ -2348,11 +2351,646 @@
         "repair": false,
         "outputs": 1,
         "x": 840,
-        "y": 360,
+        "y": 480,
         "wires": [
             [
+                "67e147e50befe368",
                 "b5ad21e164cf938e"
             ]
+        ]
+    },
+    {
+        "id": "0677cca405fb96c8",
+        "type": "comment",
+        "z": "f694214ce746579e",
+        "name": "Read Labjack Buffer",
+        "info": "",
+        "x": 190,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "ad94bbcbf1f7bc49",
+        "type": "file in",
+        "z": "f694214ce746579e",
+        "name": "LJ Analysis",
+        "filename": "/home/pi/python-labjack-daq/DATA/LJanalysis.csv",
+        "filenameType": "str",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 370,
+        "y": 620,
+        "wires": [
+            [
+                "f0cff05bcbe63652"
+            ]
+        ]
+    },
+    {
+        "id": "f0cff05bcbe63652",
+        "type": "csv",
+        "z": "f694214ce746579e",
+        "name": "Parse Labjack Data",
+        "sep": ";",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "timestamp;K1;K2;TC1;TC2;TC3;TC4;TC5;RES1;RES2;RES3;RES4;RES5;RES6;RES7;FRG1;dRES1;dRES2;dRES3;dRES4;dRES5;dRES6;dRES7",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 570,
+        "y": 620,
+        "wires": [
+            [
+                "a7dd8bf3b7c6b735",
+                "987289388db02f20",
+                "63aa6a7e8e2ad18f",
+                "82e9b5fa86157263",
+                "f845c4c66cf443e7"
+            ]
+        ]
+    },
+    {
+        "id": "6e0b80edce83a480",
+        "type": "link in",
+        "z": "f694214ce746579e",
+        "name": "Timestamp (In)",
+        "links": [
+            "3aa41ea9d9aea29c"
+        ],
+        "x": 225,
+        "y": 620,
+        "wires": [
+            [
+                "ad94bbcbf1f7bc49"
+            ]
+        ]
+    },
+    {
+        "id": "b09b8f9999b3eb71",
+        "type": "ui_chart",
+        "z": "f694214ce746579e",
+        "name": "",
+        "group": "8b82dc2997a71777",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Cryostat power",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1100,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a7dd8bf3b7c6b735",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.dRES1",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 620,
+        "wires": [
+            [
+                "b09b8f9999b3eb71"
+            ]
+        ]
+    },
+    {
+        "id": "987289388db02f20",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.dRES2",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 660,
+        "wires": [
+            [
+                "b09b8f9999b3eb71"
+            ]
+        ]
+    },
+    {
+        "id": "63aa6a7e8e2ad18f",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.dRES7",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 700,
+        "wires": [
+            [
+                "b09b8f9999b3eb71"
+            ]
+        ]
+    },
+    {
+        "id": "901c5684e1a71981",
+        "type": "ui_chart",
+        "z": "f694214ce746579e",
+        "name": "",
+        "group": "676648969881c30a",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "Fill",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1070,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "82e9b5fa86157263",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.RES1",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 780,
+        "wires": [
+            [
+                "901c5684e1a71981",
+                "16c66f7ca6659e04"
+            ]
+        ]
+    },
+    {
+        "id": "f845c4c66cf443e7",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.RES7",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 820,
+        "wires": [
+            [
+                "47813f9b17b42848",
+                "324499dfd3336c2b"
+            ]
+        ]
+    },
+    {
+        "id": "47813f9b17b42848",
+        "type": "ui_chart",
+        "z": "f694214ce746579e",
+        "name": "",
+        "group": "676648969881c30a",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "label": "Overfill",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1080,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8345f36fb808c26",
+        "type": "function",
+        "z": "f694214ce746579e",
+        "name": "function 1",
+        "func": "// The values for y = (x-xmin)/(xmax-xmin) must\n// be determined from the dataset\nmsg.payload = (msg.payload-8.925)/(9.575-8.925)*100\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 780,
+        "wires": [
+            [
+                "52c9aa395e7e9f1a"
+            ]
+        ]
+    },
+    {
+        "id": "4b22d8fbd360c3dd",
+        "type": "function",
+        "z": "f694214ce746579e",
+        "name": "function 2",
+        "func": "// The values for y = (x-xmin)/(xmax-xmin) must\n// be determined from the dataset\nmsg.payload = (msg.payload-7.65)/(10.09-7.65)*100\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 820,
+        "wires": [
+            [
+                "930068b7badc3ba9"
+            ]
+        ]
+    },
+    {
+        "id": "930068b7badc3ba9",
+        "type": "ui_gauge",
+        "z": "f694214ce746579e",
+        "name": "",
+        "group": "a343bc75c06cd2ed",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Overfill gauge",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "80",
+        "diff": false,
+        "className": "",
+        "x": 1440,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "52c9aa395e7e9f1a",
+        "type": "ui_gauge",
+        "z": "f694214ce746579e",
+        "name": "",
+        "group": "8b82dc2997a71777",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "High-power fill level",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1450,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "16c66f7ca6659e04",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "-11",
+                "vt": "num",
+                "v2": "11",
+                "v2t": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1070,
+        "y": 780,
+        "wires": [
+            [
+                "a8345f36fb808c26"
+            ]
+        ]
+    },
+    {
+        "id": "324499dfd3336c2b",
+        "type": "switch",
+        "z": "f694214ce746579e",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "-11",
+                "vt": "num",
+                "v2": "11",
+                "v2t": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1070,
+        "y": 820,
+        "wires": [
+            [
+                "4b22d8fbd360c3dd"
+            ]
+        ]
+    },
+    {
+        "id": "3533080151724162",
+        "type": "ui_chart",
+        "z": "f694214ce746579e",
+        "name": "",
+        "group": "a03eb4f3d26c477a",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Internal pressure",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1450,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "67e147e50befe368",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.FRG1",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 480,
+        "wires": [
+            [
+                "3533080151724162"
+            ]
+        ]
+    },
+    {
+        "id": "313f3ef324bbda0a",
+        "type": "change",
+        "z": "f694214ce746579e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[\"Humidity 2\"]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 380,
+        "wires": [
+            [
+                "2cb04423c7ebf302"
+            ]
+        ]
+    },
+    {
+        "id": "2cb04423c7ebf302",
+        "type": "ui_chart",
+        "z": "f694214ce746579e",
+        "name": "",
+        "group": "b2d40cfa2a020055",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Humidity (%)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 790,
+        "y": 380,
+        "wires": [
+            []
         ]
     },
     {
@@ -2721,22 +3359,6 @@
         ]
     },
     {
-        "id": "132079cdc6e501cd",
-        "type": "link in",
-        "z": "622b7c2ad32f0fe6",
-        "name": "Timestamp (In)",
-        "links": [
-            "3aa41ea9d9aea29c"
-        ],
-        "x": 245,
-        "y": 120,
-        "wires": [
-            [
-                "15f1b082197001dc"
-            ]
-        ]
-    },
-    {
         "id": "30059a2215439a52",
         "type": "comment",
         "z": "622b7c2ad32f0fe6",
@@ -2967,6 +3589,23 @@
         "wires": [
             [
                 "5aa547436835f96c"
+            ]
+        ]
+    },
+    {
+        "id": "4bc85591cac5b42d",
+        "type": "link in",
+        "z": "622b7c2ad32f0fe6",
+        "name": "link in 4",
+        "links": [
+            "3aa41ea9d9aea29c",
+            "884221549b46e093"
+        ],
+        "x": 215,
+        "y": 120,
+        "wires": [
+            [
+                "15f1b082197001dc"
             ]
         ]
     }
