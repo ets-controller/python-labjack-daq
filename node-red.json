@@ -266,25 +266,23 @@
             "ad94bbcbf1f7bc49",
             "f0cff05bcbe63652",
             "6e0b80edce83a480",
-            "b09b8f9999b3eb71",
-            "a7dd8bf3b7c6b735",
-            "987289388db02f20",
-            "63aa6a7e8e2ad18f",
-            "901c5684e1a71981",
             "82e9b5fa86157263",
             "f845c4c66cf443e7",
-            "47813f9b17b42848",
             "a8345f36fb808c26",
             "4b22d8fbd360c3dd",
             "930068b7badc3ba9",
             "52c9aa395e7e9f1a",
             "16c66f7ca6659e04",
-            "324499dfd3336c2b"
+            "324499dfd3336c2b",
+            "3702e408a99a1a12",
+            "66b7599620e27cb7",
+            "d2486ef88885d71a",
+            "3c0f51115d355767"
         ],
         "x": 74,
         "y": 439,
-        "w": 1492,
-        "h": 382
+        "w": 1532,
+        "h": 362
     },
     {
         "id": "ede534d51bbe313c",
@@ -517,7 +515,7 @@
         "h": 262
     },
     {
-        "id": "0fe3f3c995e94dc9",
+        "id": "791db7cd13ef7276",
         "type": "group",
         "z": "f694214ce746579e",
         "style": {
@@ -539,11 +537,11 @@
             "d53bf2961277c08c",
             "139077a51fe54c24",
             "3505fdd8a95dd7f6",
-            "89654b65d96ec4f5"
+            "4376b677f5ac340d"
         ],
         "x": 74,
         "y": 39,
-        "w": 1412,
+        "w": 1452,
         "h": 182
     },
     {
@@ -765,7 +763,7 @@
         "tab": "d99d97e004fee415",
         "order": 6,
         "disp": true,
-        "width": "6",
+        "width": "12",
         "collapse": false,
         "className": ""
     },
@@ -3401,7 +3399,7 @@
         "id": "3f84523399efe808",
         "type": "serial in",
         "z": "f694214ce746579e",
-        "g": "0fe3f3c995e94dc9",
+        "g": "791db7cd13ef7276",
         "name": "DHT22",
         "serial": "c4dfa7d8da268665",
         "x": 150,
@@ -3416,7 +3414,7 @@
         "id": "6278e76b82c20b67",
         "type": "csv",
         "z": "f694214ce746579e",
-        "g": "0fe3f3c995e94dc9",
+        "g": "791db7cd13ef7276",
         "name": "Parse Serial Output",
         "sep": ",",
         "hdrin": "",
@@ -3441,7 +3439,7 @@
         "id": "808feeed75f23639",
         "type": "link out",
         "z": "f694214ce746579e",
-        "g": "0fe3f3c995e94dc9",
+        "g": "791db7cd13ef7276",
         "name": "Serial COM (Out)",
         "mode": "link",
         "links": [
@@ -3455,7 +3453,7 @@
         "id": "48c63a7e827d4f90",
         "type": "comment",
         "z": "f694214ce746579e",
-        "g": "0fe3f3c995e94dc9",
+        "g": "791db7cd13ef7276",
         "name": "Connect to Arduino",
         "info": "",
         "x": 190,
@@ -3651,11 +3649,10 @@
         "y": 540,
         "wires": [
             [
-                "a7dd8bf3b7c6b735",
-                "987289388db02f20",
-                "63aa6a7e8e2ad18f",
                 "82e9b5fa86157263",
-                "f845c4c66cf443e7"
+                "f845c4c66cf443e7",
+                "3702e408a99a1a12",
+                "66b7599620e27cb7"
             ]
         ]
     },
@@ -3674,180 +3671,6 @@
             [
                 "ad94bbcbf1f7bc49"
             ]
-        ]
-    },
-    {
-        "id": "b09b8f9999b3eb71",
-        "type": "ui_chart",
-        "z": "f694214ce746579e",
-        "g": "70dc752e89018794",
-        "name": "",
-        "group": "8b82dc2997a71777",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "label": "Cryostat power",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 1100,
-        "y": 540,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a7dd8bf3b7c6b735",
-        "type": "change",
-        "z": "f694214ce746579e",
-        "g": "70dc752e89018794",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "msg.payload.dRES1",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 800,
-        "y": 540,
-        "wires": [
-            [
-                "b09b8f9999b3eb71"
-            ]
-        ]
-    },
-    {
-        "id": "987289388db02f20",
-        "type": "change",
-        "z": "f694214ce746579e",
-        "g": "70dc752e89018794",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "msg.payload.dRES2",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 800,
-        "y": 580,
-        "wires": [
-            [
-                "b09b8f9999b3eb71"
-            ]
-        ]
-    },
-    {
-        "id": "63aa6a7e8e2ad18f",
-        "type": "change",
-        "z": "f694214ce746579e",
-        "g": "70dc752e89018794",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "msg.payload.dRES7",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 800,
-        "y": 620,
-        "wires": [
-            [
-                "b09b8f9999b3eb71"
-            ]
-        ]
-    },
-    {
-        "id": "901c5684e1a71981",
-        "type": "ui_chart",
-        "z": "f694214ce746579e",
-        "g": "70dc752e89018794",
-        "name": "",
-        "group": "676648969881c30a",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "label": "Fill",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 1070,
-        "y": 660,
-        "wires": [
-            []
         ]
     },
     {
@@ -3870,11 +3693,10 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 800,
-        "y": 700,
+        "x": 840,
+        "y": 720,
         "wires": [
             [
-                "901c5684e1a71981",
                 "16c66f7ca6659e04"
             ]
         ]
@@ -3899,58 +3721,12 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 800,
-        "y": 740,
+        "x": 840,
+        "y": 760,
         "wires": [
             [
-                "47813f9b17b42848",
                 "324499dfd3336c2b"
             ]
-        ]
-    },
-    {
-        "id": "47813f9b17b42848",
-        "type": "ui_chart",
-        "z": "f694214ce746579e",
-        "g": "70dc752e89018794",
-        "name": "",
-        "group": "676648969881c30a",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "label": "Overfill",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 1080,
-        "y": 780,
-        "wires": [
-            []
         ]
     },
     {
@@ -3966,8 +3742,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1260,
-        "y": 700,
+        "x": 1300,
+        "y": 720,
         "wires": [
             [
                 "52c9aa395e7e9f1a"
@@ -3987,8 +3763,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1260,
-        "y": 740,
+        "x": 1300,
+        "y": 760,
         "wires": [
             [
                 "930068b7badc3ba9"
@@ -4020,8 +3796,8 @@
         "seg2": "80",
         "diff": false,
         "className": "",
-        "x": 1440,
-        "y": 740,
+        "x": 1480,
+        "y": 760,
         "wires": []
     },
     {
@@ -4049,8 +3825,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1450,
-        "y": 700,
+        "x": 1490,
+        "y": 720,
         "wires": []
     },
     {
@@ -4073,8 +3849,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1070,
-        "y": 700,
+        "x": 1110,
+        "y": 720,
         "wires": [
             [
                 "a8345f36fb808c26"
@@ -4101,8 +3877,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1070,
-        "y": 740,
+        "x": 1110,
+        "y": 760,
         "wires": [
             [
                 "4b22d8fbd360c3dd"
@@ -4186,7 +3962,7 @@
         "id": "313f3ef324bbda0a",
         "type": "change",
         "z": "f694214ce746579e",
-        "g": "0fe3f3c995e94dc9",
+        "g": "791db7cd13ef7276",
         "name": "",
         "rules": [
             {
@@ -4221,7 +3997,7 @@
         "id": "2f9387c438de906b",
         "type": "function",
         "z": "f694214ce746579e",
-        "g": "0fe3f3c995e94dc9",
+        "g": "791db7cd13ef7276",
         "name": "function 3",
         "func": "var msg1 = {};\nvar msg2 = {};\n\nmsg1.payload = msg.payload[\"humidity\"];\nmsg1.topic = 'val';\n\nmsg2.payload = msg.payload[\"humidity_setpoint\"];\nmsg2.topic = 'setp';\n\nreturn [msg1, msg2];",
         "outputs": 2,
@@ -4234,10 +4010,10 @@
         "y": 180,
         "wires": [
             [
-                "89654b65d96ec4f5"
+                "4376b677f5ac340d"
             ],
             [
-                "89654b65d96ec4f5"
+                "4376b677f5ac340d"
             ]
         ]
     },
@@ -4245,7 +4021,7 @@
         "id": "d53bf2961277c08c",
         "type": "function",
         "z": "f694214ce746579e",
-        "g": "0fe3f3c995e94dc9",
+        "g": "791db7cd13ef7276",
         "name": "Send Relay State",
         "func": "var stp = context.global.stp;\nvar val = msg.payload;\nvar hloop = context.global.hloop;\n\nmsg.payload = {\n    \"humidity\": val,\n    \"humidity_setpoint\": stp,\n    \"humidity_control\":hloop\n}\n\nreturn msg;",
         "outputs": 1,
@@ -4267,7 +4043,7 @@
         "id": "139077a51fe54c24",
         "type": "function",
         "z": "f694214ce746579e",
-        "g": "0fe3f3c995e94dc9",
+        "g": "791db7cd13ef7276",
         "name": "function 4",
         "func": "if (msg.payload[\"humidity_control\"] === 1) {\n    if (msg.payload[\"humidity\"] > msg.payload[\"humidity_setpoint\"]) {\n        msg.payload = \"true\"\n    }\n    else if (msg.payload[\"humidity\"] < msg.payload[\"humidity_setpoint\"]) {\n        msg.payload = \"false\"\n    }\n\n    return msg;\n}\n\nelse if (msg.payload[\"humidity_control\"] === 0) {\n    return null;\n}\n",
         "outputs": 1,
@@ -4288,7 +4064,7 @@
         "id": "3505fdd8a95dd7f6",
         "type": "link out",
         "z": "f694214ce746579e",
-        "g": "0fe3f3c995e94dc9",
+        "g": "791db7cd13ef7276",
         "name": "Humidity Control Out",
         "mode": "link",
         "links": [
@@ -4299,16 +4075,82 @@
         "wires": []
     },
     {
-        "id": "89654b65d96ec4f5",
+        "id": "3702e408a99a1a12",
+        "type": "function",
+        "z": "f694214ce746579e",
+        "g": "70dc752e89018794",
+        "name": "function 5",
+        "func": "var msg1 = {};\nvar msg2 = {};\nvar msg3 = {};\n\nmsg1.payload = msg.payload.dRES1;\nmsg1.topic = 'dRES1';\n\nmsg2.payload = msg.payload.dRES2;\nmsg2.topic = 'dRES2';\n\nmsg3.payload = msg.payload.dRES7;\nmsg3.topic = 'dRES7';\n\nreturn [msg1, msg2, msg3];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 540,
+        "wires": [
+            [
+                "d2486ef88885d71a"
+            ],
+            [
+                "d2486ef88885d71a"
+            ],
+            [
+                "d2486ef88885d71a"
+            ]
+        ]
+    },
+    {
+        "id": "66b7599620e27cb7",
+        "type": "function",
+        "z": "f694214ce746579e",
+        "g": "70dc752e89018794",
+        "name": "function 6",
+        "func": "var msg1 = {};\nvar msg2 = {};\nvar msg3 = {};\nvar msg4 = {};\nvar msg5 = {};\nvar msg6 = {};\nvar msg7 = {};\n\nmsg1.payload = msg.payload.RES1;\nmsg1.topic = 'RES1';\n\nmsg2.payload = msg.payload.RES2;\nmsg2.topic = 'RES2';\n\nmsg3.payload = msg.payload.RES3;\nmsg3.topic = 'RES3';\n\nmsg4.payload = msg.payload.RES4;\nmsg4.topic = 'RES4';\n\nmsg5.payload = msg.payload.RES5;\nmsg5.topic = 'RES5';\n\nmsg6.payload = msg.payload.RES6;\nmsg6.topic = 'RES6';\n\nmsg7.payload = msg.payload.RES7;\nmsg7.topic = 'RES7';\n\nreturn [msg1, msg2, msg3, msg4, msg5, msg6, msg7];",
+        "outputs": 7,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 640,
+        "wires": [
+            [
+                "3c0f51115d355767"
+            ],
+            [
+                "3c0f51115d355767"
+            ],
+            [
+                "3c0f51115d355767"
+            ],
+            [
+                "3c0f51115d355767"
+            ],
+            [
+                "3c0f51115d355767"
+            ],
+            [
+                "3c0f51115d355767"
+            ],
+            [
+                "3c0f51115d355767"
+            ]
+        ]
+    },
+    {
+        "id": "d2486ef88885d71a",
         "type": "ui_chart",
         "z": "f694214ce746579e",
-        "g": "0fe3f3c995e94dc9",
+        "g": "70dc752e89018794",
         "name": "",
-        "group": "b2d40cfa2a020055",
+        "group": "8b82dc2997a71777",
         "order": 4,
         "width": 0,
         "height": 0,
-        "label": "Humidity (%)",
+        "label": "Cryostat power",
         "chartType": "line",
         "legend": "true",
         "xformat": "HH:mm:ss",
@@ -4337,7 +4179,97 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1390,
+        "x": 1100,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c0f51115d355767",
+        "type": "ui_chart",
+        "z": "f694214ce746579e",
+        "g": "70dc752e89018794",
+        "name": "",
+        "group": "676648969881c30a",
+        "order": 5,
+        "width": "0",
+        "height": "0",
+        "label": "Fill",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#0011ff",
+            "#2b00ff",
+            "#6600ff",
+            "#8c00ff",
+            "#ae00ff",
+            "#ee00ff",
+            "#ff0000",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1070,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4376b677f5ac340d",
+        "type": "ui_chart",
+        "z": "f694214ce746579e",
+        "g": "791db7cd13ef7276",
+        "name": "",
+        "group": "b2d40cfa2a020055",
+        "order": 4,
+        "width": "6",
+        "height": "6",
+        "label": "Humidity (%)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#e1ff00",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1430,
         "y": 180,
         "wires": [
             []
